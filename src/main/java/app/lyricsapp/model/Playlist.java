@@ -3,35 +3,41 @@ package app.lyricsapp.model;
 import java.util.ArrayList;
 public class Playlist {
     private String playlistName;
-    private ArrayList<ArrayList<String>> listOfMusics;
-    // un morceau est une arraylist de trois elements dans cet ordre precis : Titre, Artiste, Paroles;
-    // new Arraylist <"barbamama", "barbapapa", "barbibouille", ...>
+
+    private ArrayList<String> titles;
+    private ArrayList<String> authors;
+    private ArrayList<String> lyrics;
     public Playlist (String playlistName){
         this.playlistName = playlistName;
-        this.listOfMusics = new ArrayList<>();
-    }
-    public void addMusic (String title, String author, String lyrics) throws AddMusicException {
-        ArrayList<String> Music = new ArrayList<>();
-        Music.add(title);
-        Music.add(author);
-        Music.add(lyrics);
+        this.titles = new ArrayList<>();
+        this.authors = new ArrayList<>();
+        this.lyrics = new ArrayList<>();
 
-        if (listOfMusics.contains(Music)){
-            throw new AddMusicException;
+    }
+    public void addMusic (String title, String author, String lyricsparm) throws AddMusicException {
+
+        if (titles.contains(title)){
+            int indexOfTitle = titles.indexOf(title);
+            if (authors.get(indexOfTitle).equals(author)){
+                if (lyrics.get(indexOfTitle).equals(lyricsparm)){
+                    throw new AddMusicException(title, author);
+                }
+            }
+
         }
         else {
-        listOfMusics.add(Music);
+        titles.add(title);
         }
     }
     public void deleteMusic (int pos){
-        listOfMusics.remove(pos);
+        titles.remove(pos);
+        authors.remove(pos);
+        lyrics.remove(pos);
     }
 
     public String getPlaylistName() {
         return playlistName;
     }
 
-    public ArrayList<ArrayList<String>> getListOfMusics() {
-        return listOfMusics;
-    }
+
 }

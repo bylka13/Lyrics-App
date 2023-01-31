@@ -6,9 +6,9 @@ public class AddMusicException extends Exception {
     private String artist;
     private String title;
 
-    public AddMusicException(ArrayList<String> music){
-        this.artist = music.get(0);
-        this.artist = music.get(1);
+    public AddMusicException(String title, String artist){
+        this.title = title;
+        this.artist = artist;
     }
 
     public String getMessage(){
