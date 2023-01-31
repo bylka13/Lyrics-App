@@ -14,7 +14,7 @@ public class Playlist {
         this.lyrics = new ArrayList<>();
 
     }
-    public void addMusic (String title, String author, String lyricsparm) throws AddMusicException {
+    public void addMusic (String lyricsparm) throws AddMusicException {
 
         if (titles.contains(title)){
             int indexOfTitle = titles.indexOf(title);
