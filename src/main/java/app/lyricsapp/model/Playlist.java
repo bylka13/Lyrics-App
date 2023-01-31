@@ -25,24 +25,13 @@ public class Playlist {
         }
     }
     public void deleteMusic (int pos){
-        titles.remove(pos);
-        authors.remove(pos);
-        lyrics.remove(pos);
+        songs.remove(pos);
     }
-
     public String getPlaylistName() {
         return playlistName;
     }
 
-    public ArrayList<String> getAuthors() {
-        return authors;
-    }
-
-    public ArrayList<String> getLyrics() {
-        return lyrics;
-    }
-
-    public ArrayList<String> getTitles() {
-        return titles;
+    public ArrayList<Song> getSongs() {
+        return songs;
     }
 }
