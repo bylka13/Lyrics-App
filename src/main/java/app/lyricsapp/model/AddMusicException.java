@@ -2,7 +2,7 @@ package app.lyricsapp.model;
 
 import java.util.ArrayList;
 
-public class AddMusicException {
+public class AddMusicException extends Exception {
     private String artist;
     private String title;
 
