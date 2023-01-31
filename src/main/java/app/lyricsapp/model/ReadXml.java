@@ -23,7 +23,7 @@ public class ReadXml {
             System.out.println("Root Element :" + doc.getDocumentElement().getNodeName());
             System.out.println("*********");
             NodeList list = doc.getElementsByTagName("SearchLyricResult");
-            for (int i = 0; i < list.getLength(); i++){
+            for (int i = 0; i < list.getLength() - 1; i++){
                 Node node = list.item(i);
                 //Pour verifier que c'est un noeud
                 if(node.getNodeType() == Node.ELEMENT_NODE){
