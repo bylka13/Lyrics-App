@@ -39,5 +39,15 @@ public class Playlist {
         return playlistName;
     }
 
+    public ArrayList<String> getAuthors() {
+        return authors;
+    }
 
+    public ArrayList<String> getLyrics() {
+        return lyrics;
+    }
+
+    public ArrayList<String> getTitles() {
+        return titles;
+    }
 }
