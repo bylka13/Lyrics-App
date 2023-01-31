@@ -9,19 +9,14 @@ public class Playlist {
         this.songs = new ArrayList<Song>();
 
     }
-    public void addMusic (String lyricsparm) throws AddMusicException {
+    public void addMusic (Song song) throws AddMusicException {
 
-        if (titles.contains(title)){
-            int indexOfTitle = titles.indexOf(title);
-            if (authors.get(indexOfTitle).equals(author)){
-                if (lyrics.get(indexOfTitle).equals(lyricsparm)){
-                    throw new AddMusicException(title, author);
-                }
-            }
+        if (songs.contains(song)){
+            throw new AddMusicException(song.getTitle(), song.getAuthor());
 
         }
         else {
-        titles.add(title);
+        songs.add(song);
         }
     }
     public void deleteMusic (int pos){
