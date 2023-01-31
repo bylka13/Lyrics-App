@@ -23,5 +23,5 @@ public class Song {
         public String getLyric() {
             return lyric;
         }
-    }
 }
+
