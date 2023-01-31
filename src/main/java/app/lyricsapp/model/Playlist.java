@@ -9,5 +9,10 @@ public class Playlist {
         this.playlistName = playlistName;
         this.listOfMusics = new ArrayList<>();
     }
-
+    public void addMusic(ArrayList<String> Music){
+        listOfMusics.add(Music);
+    }
+    public void deleteMusic(int pos){
+        listOfMusics.remove(pos);
+    }
 }
