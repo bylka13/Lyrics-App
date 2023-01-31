@@ -3,15 +3,10 @@ package app.lyricsapp.model;
 import java.util.ArrayList;
 public class Playlist {
     private String playlistName;
-
-    private ArrayList<String> titles;
-    private ArrayList<String> authors;
-    private ArrayList<String> lyrics;
+    private ArrayList<Song> songs;
     public Playlist (String playlistName){
         this.playlistName = playlistName;
-        this.titles = new ArrayList<>();
-        this.authors = new ArrayList<>();
-        this.lyrics = new ArrayList<>();
+        this.songs = new ArrayList<Song>();
 
     }
     public void addMusic (String lyricsparm) throws AddMusicException {
