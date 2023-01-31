@@ -10,11 +10,4 @@ public class Playlist {
         this.listOfMusics = new ArrayList<>();
     }
 
-    public String getPlaylistName() {
-        return playlistName;
-    }
-
-    public ArrayList<ArrayList<String>> getListOfMusics() {
-        return listOfMusics;
-    }
 }
