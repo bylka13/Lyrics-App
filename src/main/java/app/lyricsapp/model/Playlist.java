@@ -29,4 +29,13 @@ public class Playlist {
     public ArrayList<Song> getSongs() {
         return songs;
     }
+
+    public void display(){
+        int num = 0;
+        for (Song song : songs){
+            System.out.println(num + " "+ song.getTitle() + ", "+ song.getAuthor());
+        }
+
+
+    }
 }
