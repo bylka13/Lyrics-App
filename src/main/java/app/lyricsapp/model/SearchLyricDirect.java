@@ -26,5 +26,10 @@ public class SearchLyricDirect{
         String LyricCorrectUrl = null ;
         String Lyric = null;
         int LyricRank = 0;
+
+        DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+        DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+        Document document = dBuilder.parse(lien);
     }
+
 }
