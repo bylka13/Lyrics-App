@@ -45,7 +45,7 @@ public class SearchLyricDirect{
                 Lyric = newNode.getTextContent();
             }
         }
-        System.out.println(new LyricSongDirect(LyricSong, LyricArtist,Lyric));
+        System.out.println(new Song(Lyric, LyricArtist ,LyricSong));
 
     }
 }

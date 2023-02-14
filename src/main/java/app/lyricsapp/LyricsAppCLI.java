@@ -9,6 +9,8 @@ import java.util.Scanner;
 
 public class LyricsAppCLI {
     public static void main(String[] args) throws IOException, ParserConfigurationException, SAXException {
+        SearchLyricText mySearch = new SearchLyricText();
+
         System.out.println("Welcome to the lyrics app");
         while (true) {
             System.out.println("Input your command: ");
@@ -33,7 +35,6 @@ public class LyricsAppCLI {
                     break;
 
                 case "2" :
-                        SearchLyricText mySearch = new SearchLyricText();
                         System.out.println("Veuillez entrer vos paroles :");
                         Scanner scanner3 = new Scanner(System.in);
                         String paroles = scanner3.nextLine();

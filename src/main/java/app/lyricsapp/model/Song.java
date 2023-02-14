@@ -32,7 +32,7 @@ public class Song {
 
         return "\nTitre: " + getTitle() +
                "\nArtist: " + getAuthor() +
-               "\nSongUrl: " + getSongUrl() +
+               "\nLyric: " + getSongUrl() +
                "\n";
     }
 

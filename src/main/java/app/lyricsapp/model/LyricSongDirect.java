@@ -12,7 +12,6 @@ public class LyricSongDirect {
         LyricArtist = lyricArtist;
         Lyric = lyric;
     }
-
     public String getLyricSong() {
         return LyricSong;
     }
@@ -34,7 +33,9 @@ public class LyricSongDirect {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         LyricSongDirect that = (LyricSongDirect) o;
-        return Objects.equals(LyricSong, that.LyricSong) && Objects.equals(LyricArtist, that.LyricArtist) && Objects.equals(Lyric, that.Lyric);
+        return Objects.equals(LyricSong, that.LyricSong) &&
+               Objects.equals(LyricArtist, that.LyricArtist) &&
+               Objects.equals(Lyric, that.Lyric);
     }
 
     @Override
