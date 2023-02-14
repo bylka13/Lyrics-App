@@ -37,7 +37,7 @@ public class SearchLyricDirect{
                 LyricSong = newNode.getTextContent();
             }
             if (newNode.getNodeName().equals("LyricArtist")){
-                LyricArtist = new String(newNode.getTextContent());
+                LyricArtist = newNode.getTextContent();
             }
             if (newNode.getNodeName().equals("Lyric")) {
                 Lyric = newNode.getTextContent();
