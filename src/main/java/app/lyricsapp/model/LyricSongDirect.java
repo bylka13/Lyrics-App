@@ -31,5 +31,7 @@ public class LyricSongDirect {
     public String getLyricChecksum() {
         return LyricChecksum;
     }
-
+    public int getLyricId() {
+        return LyricId;
+    }
 }
