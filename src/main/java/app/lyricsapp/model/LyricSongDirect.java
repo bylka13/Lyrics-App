@@ -34,4 +34,7 @@ public class LyricSongDirect {
     public int getLyricId() {
         return LyricId;
     }
+    public String getLyricSong() {
+        return LyricSong;
+    }
 }
