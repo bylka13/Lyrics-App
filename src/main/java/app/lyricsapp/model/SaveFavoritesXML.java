@@ -14,7 +14,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 
-public class SaveFavorites {
+public class SaveFavoritesXML {
 
     public void createDocument(Playlist favorites) throws ParserConfigurationException, TransformerException {
         DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
@@ -23,22 +23,22 @@ public class SaveFavorites {
 
         int i = 1;
         for (LyricSongText song : favorites.getSongs()) {
-            Element songElement = doc.createElement("song");
+            Element songElement = doc.createElement("Song");
             doc.appendChild(songElement);
 
-            Element lyricId = doc.createElement("lyricId");
+            Element lyricId = doc.createElement("LyricId");
             lyricId.setTextContent(String.valueOf(i));
             songElement.appendChild(lyricId);
 
-            Element title = doc.createElement("title");
+            Element title = doc.createElement("Title");
             title.setTextContent(song.getTitle());
             songElement.appendChild(title);
 
-            Element artist = doc.createElement("artist");
+            Element artist = doc.createElement("Artist");
             artist.setTextContent(song.getAuthor());
             songElement.appendChild(artist);
 
-            Element lyric = doc.createElement("lyric");
+            Element lyric = doc.createElement("Lyric");
             lyric.setTextContent(song.getLyric());
             songElement.appendChild(lyric);
 
