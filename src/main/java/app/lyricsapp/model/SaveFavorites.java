@@ -22,7 +22,7 @@ public class SaveFavorites {
         Document doc = docBuilder.newDocument();
 
         int i = 1;
-        for (LyricSongText song : favorites.getSongs()) {
+        for (Song song : favorites.getSongs()) {
             Element songElement = doc.createElement("song");
             doc.appendChild(songElement);
 
