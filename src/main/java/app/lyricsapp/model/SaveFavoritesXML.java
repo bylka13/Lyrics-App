@@ -22,13 +22,9 @@ public class SaveFavoritesXML {
         Document doc = docBuilder.newDocument();
 
         int i = 1;
-        for (LyricSongText song : favorites.getSongs()) {
+        for (Song song : favorites.getSongs()) {
             Element songElement = doc.createElement("Song");
             doc.appendChild(songElement);
-
-            Element lyricId = doc.createElement("LyricId");
-            lyricId.setTextContent(String.valueOf(i));
-            songElement.appendChild(lyricId);
 
             Element title = doc.createElement("Title");
             title.setTextContent(song.getTitle());
@@ -45,7 +41,7 @@ public class SaveFavoritesXML {
             i++;
         }
         try (FileOutputStream output =
-                     new FileOutputStream("src/main/resources/fichiers xml/favorites.xml")) {
+                     new FileOutputStream("src/main/resources/favorites.xml")) {
             writeXml(doc, output);
         } catch (IOException e) {
             e.printStackTrace();

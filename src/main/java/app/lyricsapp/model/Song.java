@@ -1,7 +1,6 @@
 package app.lyricsapp.model;
 
 public class Song {
-
         String title;
         String author;
         String lyric;
