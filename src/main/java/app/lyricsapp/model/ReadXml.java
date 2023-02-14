@@ -9,10 +9,10 @@ import org.w3c.dom.Element;
 import java.io.File;
 
 public class ReadXml {
-    public static void main(String argv[]){
+    public static void readXml(String path){
         try{
             // Constructeur de fichier
-            File xmlFile = new File("src/main/resources/fichiers xml/query1.xml");
+            File xmlFile = new File(path);
             //Instancier factory
             DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
             // Analyse du fichier XML
