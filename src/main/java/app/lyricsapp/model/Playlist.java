@@ -16,7 +16,7 @@ public class Playlist {
 
         }
         else {
-        songs.add(song);
+            songs.add(song);
         }
     }
     public void deleteMusic (int pos){
