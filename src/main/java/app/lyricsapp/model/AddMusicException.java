@@ -12,6 +12,6 @@ public class AddMusicException extends Exception {
     }
 
     public String getMessage(){
-        return "Cette chanson '" + title + "' de " + artist + " est déjà dans la playlist.";
+        return "Cette chanson '" + title + " de " + artist + " est déjà dans la playlist.";
     }
 }

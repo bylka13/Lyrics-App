@@ -32,10 +32,15 @@ public class ReadXml {
                     String songUrl = element.getElementsByTagName("SongUrl").item(0).getTextContent();
                     String artist = element.getElementsByTagName("Artist").item(0).getTextContent();
                     String song = element.getElementsByTagName("Song").item(0).getTextContent();
+                    int trackId = Integer.parseInt(element.getElementsByTagName("TrackId").item(0).getTextContent());
+                    String lyricChecksum = element.getElementsByTagName("LyricChecksum").item(0).getTextContent();
+                    int lyricId = Integer.parseInt(element.getElementsByTagName("LyricId").item(0).getTextContent());
+                    String artistUrl = element.getElementsByTagName("ArtistUrl").item(0).getTextContent();
+                    int songRank = Integer.parseInt(element.getElementsByTagName("SongRank").item(0).getTextContent());
                     System.out.println("\nCurrent Element  : " + node.getNodeName());
-                    System.out.println("Artist : " + artist);
-                    System.out.println("Song : " + song);
-                    System.out.println("SongUrl : " + songUrl);
+
+                    LyricSongText music = new LyricSongText(trackId, lyricChecksum, lyricId, songUrl, artistUrl, artist, song, songRank);
+                    System.out.println(music);
                 }
             }
         }catch (Exception e){
