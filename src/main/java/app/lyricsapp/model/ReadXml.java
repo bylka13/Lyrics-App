@@ -10,10 +10,10 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import java.io.File;
 
 public class ReadXml {
-    public static void main(String argv[]){
+    public static void readXml(String path){
         try{
             // Constructeur de fichier
-            File xmlFile = new File("src/main/resources/fichiers xml/query1.xml");
+            File xmlFile = new File(path);
             //Instancier factory
             DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
             // Analyse du fichier XML
@@ -33,14 +33,9 @@ public class ReadXml {
                     String songUrl = element.getElementsByTagName("SongUrl").item(0).getTextContent();
                     String artist = element.getElementsByTagName("Artist").item(0).getTextContent();
                     String song = element.getElementsByTagName("Song").item(0).getTextContent();
-                    int trackId = Integer.parseInt(element.getElementsByTagName("TrackId").item(0).getTextContent());
-                    String lyricChecksum = element.getElementsByTagName("LyricChecksum").item(0).getTextContent();
-                    int lyricId = Integer.parseInt(element.getElementsByTagName("LyricId").item(0).getTextContent());
-                    String artistUrl = element.getElementsByTagName("ArtistUrl").item(0).getTextContent();
-                    int songRank = Integer.parseInt(element.getElementsByTagName("SongRank").item(0).getTextContent());
                     System.out.println("\nCurrent Element  : " + node.getNodeName());
 
-                    LyricSongText music = new LyricSongText(trackId, lyricChecksum, lyricId, songUrl, artistUrl, artist, song, songRank);
+                    LyricSongText music = new LyricSongText(songUrl, artist, song);
                     System.out.println(music);
                 }
             }

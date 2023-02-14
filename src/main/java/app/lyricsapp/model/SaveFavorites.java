@@ -39,7 +39,7 @@ public class SaveFavorites {
             songElement.appendChild(artist);
 
             Element lyric = doc.createElement("lyric");
-            lyric.setTextContent(song.getLyric());
+            lyric.setTextContent(song.getSongUrl());
             songElement.appendChild(lyric);
 
             i++;
