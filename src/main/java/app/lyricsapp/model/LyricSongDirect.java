@@ -28,4 +28,8 @@ public class LyricSongDirect {
     public int getTrackId() {
         return TrackId;
     }
+    public String getLyricChecksum() {
+        return LyricChecksum;
+    }
+
 }
