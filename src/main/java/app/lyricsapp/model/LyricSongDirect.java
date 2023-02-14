@@ -1,5 +1,7 @@
 package app.lyricsapp.model;
 
+import java.util.Objects;
+
 public class LyricSongDirect {
     private int TrackId;
     private String LyricChecksum;
@@ -68,4 +70,18 @@ public class LyricSongDirect {
                 "\nLyricCorrectUrl: " + LyricCorrectUrl +
                 "\nLyric: " + Lyric + "\n";
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        LyricSongDirect that = (LyricSongDirect) o;
+        return TrackId == that.TrackId && LyricId == that.LyricId && LyricRank == that.LyricRank && Objects.equals(LyricChecksum, that.LyricChecksum) && Objects.equals(LyricSong, that.LyricSong) && Objects.equals(LyricArtist, that.LyricArtist) && Objects.equals(LyricUrl, that.LyricUrl) && Objects.equals(LyricCovertArtUrl, that.LyricCovertArtUrl) && Objects.equals(LyricCorrectUrl, that.LyricCorrectUrl) && Objects.equals(Lyric, that.Lyric);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(TrackId, LyricChecksum, LyricId, LyricSong, LyricArtist, LyricUrl, LyricCovertArtUrl, LyricRank, LyricCorrectUrl, Lyric);
+    }
 }
+
