@@ -45,7 +45,7 @@ public class SaveFavorites {
             i++;
         }
         try (FileOutputStream output =
-                     new FileOutputStream("c:\\test\\staff-dom.xml")) {
+                     new FileOutputStream("src/main/resources/fichiers xml/favorites.xml")) {
             writeXml(doc, output);
         } catch (IOException e) {
             e.printStackTrace();
