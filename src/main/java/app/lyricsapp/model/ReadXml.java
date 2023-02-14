@@ -35,7 +35,7 @@ public class ReadXml {
                     String song = element.getElementsByTagName("Song").item(0).getTextContent();
                     System.out.println("\nCurrent Element  : " + node.getNodeName());
 
-                    LyricSongText music = new LyricSongText(songUrl, artist, song);
+                    Song music = new Song(songUrl, artist, song);
                     System.out.println(music);
                 }
             }
