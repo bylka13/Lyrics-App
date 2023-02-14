@@ -13,13 +13,13 @@ import java.util.ArrayList;
 
 public class SearchLyricText {
 
-    ArrayList<LyricSongText> toPrint;
+    ArrayList<Song> toPrint;
 
     public SearchLyricText() {
         this.toPrint = new ArrayList<>();
     }
 
-    public ArrayList<LyricSongText> getToPrint() {
+    public ArrayList<Song> getToPrint() {
         return toPrint;
     }
 
@@ -59,7 +59,7 @@ public class SearchLyricText {
                 }
             }
 
-            LyricSongText music = new LyricSongText(SongUrl, Artist, Song);
+            Song music = new Song(SongUrl, Artist, Song);
             if(!toPrint.contains(music)){
                 toPrint.add(music);
             }
