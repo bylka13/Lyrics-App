@@ -32,7 +32,7 @@ public class Playlist {
 
     public void display(){
         int num = 0;
-        for (Song song : songs){
+        for (LyricSongText song : songs){
             System.out.println(num + " "+ song.getTitle() + ", "+ song.getAuthor());
         }
 
