@@ -24,6 +24,7 @@ public class LyricsAppCLI {
                 Scanner scanner2 = new Scanner(System.in);
                 String titre = scanner2.nextLine();
                 SearchLyricDirect.searchLyricDirect(artist, titre);
+
             }
 
             if (input.equals("2")) {
