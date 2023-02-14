@@ -24,4 +24,8 @@ public class LyricSongDirect {
         LyricCorrectUrl = lyricCorrectUrl;
         Lyric = lyric;
     }
+
+    public int getTrackId() {
+        return TrackId;
+    }
 }
