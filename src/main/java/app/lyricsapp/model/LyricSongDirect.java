@@ -49,4 +49,7 @@ public class LyricSongDirect {
     public int getLyricRank() {
         return LyricRank;
     }
+    public String getLyricCorrectUrl() {
+        return LyricCorrectUrl;
+    }
 }
