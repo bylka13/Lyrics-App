@@ -72,10 +72,10 @@ public class SearchLyricText {
 
             LyricSongText music = new LyricSongText(TrackId, LyricChecksum, LyricId, SongUrl, ArtistUrl, Artist, Song, SongRank);
             if(!toPrint.contains(music)){
-                toPrint.add(music);
+                //toPrint.add(music);
             }
         }
         System.out.print("1. ");
-        SearchLyricDirect.searchLyricDirect(toPrint.get(0).getAuthor(), toPrint.get(0).getTitle());
+        //SearchLyricDirect.searchLyricDirect(toPrint.get(0).getAuthor(), toPrint.get(0).getTitle());
     }
 }
