@@ -1,16 +1,42 @@
 package app.lyricsapp;
 
+import app.lyricsapp.model.*;
+import org.xml.sax.SAXException;
+
+import javax.xml.parsers.ParserConfigurationException;
+import java.io.IOException;
 import java.util.Scanner;
 
 public class LyricsAppCLI {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException, ParserConfigurationException, SAXException {
         System.out.println("Welcome to the lyrics app");
+        while (true) {
+            System.out.println("Input your command: ");
+            System.out.println("Menu: \n" + "Recherche de chansons: \n" + "1/ Par Artiste et par Titre \n" + "2/ Par Paroles \n" + "0/ Pour quitter");
+            Scanner scanner = new Scanner(System.in);
+            String input = scanner.nextLine();
 
-        System.out.println("You requested command '" + args[0] + "' with parameter '" + args[1] + "'");
+            if (input.equals("1")) {
+                System.out.println("Veuillez entrer le nom de l'artiste \n");
+                Scanner scanner1 = new Scanner(System.in);
+                String artist = scanner1.nextLine();
+                System.out.println("Veuillez entrer le titre de votre chanson \n");
+                Scanner scanner2 = new Scanner(System.in);
+                String titre = scanner2.nextLine();
+                SearchLyricDirect.searchLyricDirect(artist, titre);
+            }
 
-        System.out.println("Input your command: ");
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Sorry, I can't do anything yet ! (Read: " + scanner.nextLine() +")");
-        scanner.close();
+            if (input.equals("2")) {
+                System.out.println("Veuillez entrer vos paroles \n");
+                Scanner scanner3 = new Scanner(System.in);
+                String paroles = scanner3.nextLine();
+                SearchLyricText.searchLyricText(paroles);
+            }
+
+
+            if (input.equals("0")) {
+                break;
+            }
+        }
     }
 }
