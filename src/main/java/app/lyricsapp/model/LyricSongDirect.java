@@ -43,4 +43,7 @@ public class LyricSongDirect {
     public String getLyricUrl() {
         return LyricUrl;
     }
+    public String getLyricCovertArtUrl() {
+        return LyricCovertArtUrl;
+    }
 }
