@@ -59,15 +59,8 @@ public class LyricSongDirect {
     }
     @Override
     public String toString() {
-        return "\nTrackId: " + TrackId +
-                "\nLyricChecksum: " + LyricChecksum +
-                "\nLyricId: " + LyricId +
-                "\nLyricSong: " + LyricSong +
+        return  "\nLyricSong: " + LyricSong +
                 "\nLyricArtist: " + LyricArtist +
-                "\nLyricUrl: " + LyricUrl +
-                "\nLyricCovertArtUrl: " + LyricCovertArtUrl +
-                "\nLyricRank: " + LyricRank +
-                "\nLyricCorrectUrl: " + LyricCorrectUrl +
                 "\nLyric: " + Lyric + "\n";
     }
 
