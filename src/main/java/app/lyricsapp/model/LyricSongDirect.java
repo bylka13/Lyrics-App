@@ -52,4 +52,7 @@ public class LyricSongDirect {
     public String getLyricCorrectUrl() {
         return LyricCorrectUrl;
     }
+    public String getLyric() {
+        return Lyric;
+    }
 }
