@@ -60,7 +60,7 @@ public class Search {
                 }
             }
 
-            Song music = new Song(SongUrl, Artist, Song);
+            Song music = new Song(Song, Artist,SongUrl);
             if(!toPrint.contains(music)){
                 toPrint.add(music);
             }
@@ -72,6 +72,7 @@ public class Search {
             System.out.println(i + ". " + toPrint.get(i));
         }
     }
+
     public static void searchLyricDirect(String artist, String title) throws IOException, ParserConfigurationException, SAXException {
 
         String lien = "http://api.chartlyrics.com/apiv1.asmx/SearchLyricDirect?artist=" + artist + "&song=" + title;
