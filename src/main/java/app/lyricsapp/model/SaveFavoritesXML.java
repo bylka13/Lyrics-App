@@ -39,7 +39,7 @@ public class SaveFavoritesXML {
             songElement.appendChild(artist);
 
             Element lyric = doc.createElement("lyric");
-            lyric.setTextContent(song.getSongUrl());
+            lyric.setTextContent(song.getSong());
             songElement.appendChild(lyric);
 
             i++;
