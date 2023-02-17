@@ -12,7 +12,7 @@ import java.io.IOException;
 
 
 
-public class SearchLyricDirect{
+public class Search {
     public static void searchLyricDirect(String artist, String title) throws IOException, ParserConfigurationException, SAXException {
 
         String lien = "http://api.chartlyrics.com/apiv1.asmx/SearchLyricDirect?artist=" + artist + "&song=" + title;
@@ -39,13 +39,13 @@ public class SearchLyricDirect{
                 LyricSong = newNode.getTextContent();
             }
             if (newNode.getNodeName().equals("LyricArtist")){
-                LyricArtist = newNode.getTextContent();
+                LyricArtist = new String(newNode.getTextContent());
             }
             if (newNode.getNodeName().equals("Lyric")) {
                 Lyric = newNode.getTextContent();
             }
         }
-        System.out.println(new Song(Lyric, LyricArtist ,LyricSong));
+        System.out.println(new Song(LyricSong, LyricArtist,Lyric));
 
     }
 }

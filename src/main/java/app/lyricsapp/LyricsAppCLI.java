@@ -31,7 +31,7 @@ public class LyricsAppCLI {
                     System.out.println("Veuillez entrer le titre de votre chanson :");
                     Scanner scanner2 = new Scanner(System.in);
                     String titre = scanner2.nextLine();
-                    SearchLyricDirect.searchLyricDirect(artist, titre);
+                    Search.searchLyricDirect(artist, titre);
                     break;
 
                 case "2" :
@@ -52,7 +52,7 @@ public class LyricsAppCLI {
                         int numberOfTheSong = Integer.parseInt(scanner6.nextLine());
                         String artiste = mySearch.getToPrint().get(numberOfTheSong).getAuthor();
                         String title = mySearch.getToPrint().get(numberOfTheSong).getTitle();
-                        SearchLyricDirect.searchLyricDirect(artiste, title);
+                        Search.searchLyricDirect(artiste, title);
                     break;
 
                 case "3" :
