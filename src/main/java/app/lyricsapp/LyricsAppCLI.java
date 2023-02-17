@@ -50,10 +50,11 @@ public class LyricsAppCLI {
                 System.out.println("Veuillez entrer le numéro de la chanson que vous voulez afficher:");
                 Scanner scanner6 = new Scanner(System.in);
                 int numberOfTheSong = Integer.parseInt(scanner6.nextLine());
+                int number = numberOfResults;
                 while (numberOfTheSong < 1 || numberOfTheSong > numberOfResults) {
-                    System.out.println("Veuillez entrer un nombre compris entre 1 et" + numberOfResults + "inclus :");
+                    System.out.println("Veuillez entrer un nombre compris entre 1 et " + number + " inclus :");
                     Scanner scanner7 = new Scanner(System.in);
-                    numberOfResults = Integer.parseInt(scanner7.nextLine());
+                    numberOfTheSong = Integer.parseInt(scanner7.nextLine());
                 }
                 String artiste = mySearch.getToPrint().get(numberOfTheSong).getAuthor();
                 String title = mySearch.getToPrint().get(numberOfTheSong).getTitle();
