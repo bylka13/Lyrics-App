@@ -34,8 +34,11 @@ public class Playlist {
         int num = 0;
         for (Song song : songs){
             System.out.println(num + " "+ song.getTitle() + ", "+ song.getAuthor());
+            num++;
         }
+    }
 
-
+    public void addAllMusics(ArrayList<Song> songs){
+        this.songs.addAll(songs);
     }
 }
