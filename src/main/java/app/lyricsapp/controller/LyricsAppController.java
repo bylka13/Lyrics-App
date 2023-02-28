@@ -36,4 +36,9 @@ public class LyricsAppController implements Initializable {
         rootPane.getChildren().setAll(pane);
     }
 
+    public void home(javafx.event.ActionEvent actionEvent) throws IOException{
+        VBox pane = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/app/lyricsapp/view/home.fxml")));
+        rootPane.getChildren().setAll(pane);
+    }
+
 }
