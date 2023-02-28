@@ -14,7 +14,11 @@ public class LyricsAppCLI {
     public static void main(String[] args) throws IOException, ParserConfigurationException, SAXException, AddMusicException, TransformerException {
         Search mySearch = new Search();
         Playlist favorites = new Playlist("favorites");
-
+        File file = new File("src/main/resources/fichiers xml/favorites.xml");
+        if (file.exists()) {
+            favorites.addAllMusics(ReadXml.readXml("src/main/resources/fichiers xml/favorites.xml"));
+            System.out.println("Le fichier favoris a été chargé");
+        }
         System.out.println("Welcome to the lyrics app");
         while (true) {
             System.out.println("Input your command: ");
@@ -38,10 +42,12 @@ public class LyricsAppCLI {
                 System.out.println(Search.searchLyricDirect(artist,titre));
                 Scanner scanner3 = new Scanner(System.in);
                 System.out.println("Voulez-vous ajouter ce son dans la liste des favoris ?");
-                System.out.println("1/ Oui \n +" +
+                System.out.println("1/ Oui \n" +
                                    "2/ Non");
                 if(Objects.equals(scanner3.nextLine(), "1")){
                     favorites.addMusic(song);
+                    SaveFavoritesXML.createDocument(favorites);
+
                 }
 
             }
@@ -74,17 +80,10 @@ public class LyricsAppCLI {
             }
 
             if(Objects.equals(input, "3")) {
-                File file = new File("src/main/resources/fichiers xml/favorites.xml");
-                if (file.exists()){
-                    favorites = ReadXml.readXml("src/main/resources/fichiers xml/favorites.xml");
-                    favorites.display();
-                    System.out.println("La liste des favoris a été chargée.");
-                }
-                else {
-                    System.out.println("Creation de la liste de favoris");
-                    favorites.display();
-                }
+                favorites.display();
             }
+
+
 
             if(Objects.equals(input, "0")) {
                 SaveFavoritesXML.createDocument(favorites);
