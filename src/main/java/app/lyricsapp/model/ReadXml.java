@@ -14,8 +14,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class ReadXml {
-    public static Playlist readXml(String path) throws ParserConfigurationException, IOException, SAXException, AddMusicException {
-        Playlist favorites = new Playlist("favorites");
+    public static ArrayList<Song> readXml(String path) throws ParserConfigurationException, IOException, SAXException, AddMusicException {
+        ArrayList<Song> favorites = new ArrayList<>();
         // Constructeur de fichier
         File xmlFile = new File(path);
         //Instancier factory
@@ -25,10 +25,8 @@ public class ReadXml {
         Document doc = db.parse(xmlFile);
         doc.getDocumentElement().normalize();
         //root node ArrayOfSearchLyricResult
-        System.out.println("Root Element :" + doc.getDocumentElement().getNodeName());
-        System.out.println("*********");
         NodeList list = doc.getElementsByTagName("Song");
-        for (int i = 0; i < list.getLength() - 1; i++){
+        for (int i = 0; i < list.getLength(); i++){
             Node node = list.item(i);
             //Pour verifier que c'est un noeud
             if(node.getNodeType() == Node.ELEMENT_NODE){
@@ -37,10 +35,9 @@ public class ReadXml {
                 String title = element.getElementsByTagName("Title").item(0).getTextContent();
                 String artist = element.getElementsByTagName("Artist").item(0).getTextContent();
                 String lyric = element.getElementsByTagName("Lyric").item(0).getTextContent();
-                System.out.println("\nCurrent Element  : " + node.getNodeName());
 
-                Song song = new Song(title, artist, lyric);
-                favorites.addMusic(song);
+                Song song = new Song(lyric, artist, title);
+                favorites.add(song);
             }
         }
         return favorites;
