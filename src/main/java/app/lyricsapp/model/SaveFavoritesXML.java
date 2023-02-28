@@ -16,7 +16,7 @@ import java.io.OutputStream;
 
 public class SaveFavoritesXML {
 
-    public void createDocument(Playlist favorites) throws ParserConfigurationException, TransformerException {
+    public static void createDocument(Playlist favorites) throws ParserConfigurationException, TransformerException {
         DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
         DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
         Document doc = docBuilder.newDocument();
@@ -45,7 +45,7 @@ public class SaveFavoritesXML {
             i++;
         }
         try (FileOutputStream output =
-                     new FileOutputStream("c:\\test\\staff-dom.xml")) {
+                     new FileOutputStream("src/main/resources/fichiers xml/favorites.xml")) {
             writeXml(doc, output);
         } catch (IOException e) {
             e.printStackTrace();
