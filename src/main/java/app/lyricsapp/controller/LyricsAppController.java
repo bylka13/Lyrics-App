@@ -18,7 +18,7 @@ public class LyricsAppController implements Initializable {
 
     @FXML private AnchorPane rootPane;
 
-    //    @Override
+    //  @Override
     public void initialize(URL location, ResourceBundle resourceBundle) {}
 
     public void searchByArtistAndTitle(javafx.event.ActionEvent actionEvent) throws IOException {
