@@ -73,7 +73,7 @@ public class Search {
         }
     }
 
-    public static void searchLyricDirect(String artist, String title) throws IOException, ParserConfigurationException, SAXException {
+    public static Song searchLyricDirect(String artist, String title) throws IOException, ParserConfigurationException, SAXException {
 
         String lien = "http://api.chartlyrics.com/apiv1.asmx/SearchLyricDirect?artist=" + artist + "&song=" + title;
 
@@ -105,7 +105,7 @@ public class Search {
                 Lyric = newNode.getTextContent();
             }
         }
-        System.out.println(new Song(LyricSong, LyricArtist,Lyric));
+        return new Song(LyricSong, LyricArtist,Lyric);
 
     }
 }

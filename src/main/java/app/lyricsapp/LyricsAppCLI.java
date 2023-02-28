@@ -4,13 +4,16 @@ import app.lyricsapp.model.*;
 import org.xml.sax.SAXException;
 
 import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.TransformerException;
+import java.io.File;
 import java.io.IOException;
 import java.util.Objects;
 import java.util.Scanner;
 
 public class LyricsAppCLI {
-    public static void main(String[] args) throws IOException, ParserConfigurationException, SAXException {
+    public static void main(String[] args) throws IOException, ParserConfigurationException, SAXException, AddMusicException, TransformerException {
         Search mySearch = new Search();
+        Playlist favorites = new Playlist("favorites");
 
         System.out.println("Welcome to the lyrics app");
         while (true) {
@@ -31,7 +34,16 @@ public class LyricsAppCLI {
                 System.out.println("Veuillez entrer le titre de votre chanson :");
                 Scanner scanner2 = new Scanner(System.in);
                 String titre = scanner2.nextLine();
-                Search.searchLyricDirect(artist, titre);
+                Song song = Search.searchLyricDirect(artist,titre);
+                System.out.println(Search.searchLyricDirect(artist,titre));
+                Scanner scanner3 = new Scanner(System.in);
+                System.out.println("Voulez-vous ajouter ce son dans la liste des favoris ?");
+                System.out.println("1/ Oui \n +" +
+                                   "2/ Non");
+                if(Objects.equals(scanner3.nextLine(), "1")){
+                    favorites.addMusic(song);
+                }
+
             }
 
             if(Objects.equals(input, "2")) {
@@ -62,10 +74,20 @@ public class LyricsAppCLI {
             }
 
             if(Objects.equals(input, "3")) {
-                //ReadXml.readXml("src/main/resources/fichiers xml/query1.xml");
+                File file = new File("src/main/resources/fichiers xml/favorites.xml");
+                if (file.exists()){
+                    favorites = ReadXml.readXml("src/main/resources/fichiers xml/favorites.xml");
+                    favorites.display();
+                    System.out.println("La liste des favoris a été chargée.");
+                }
+                else {
+                    System.out.println("Creation de la liste de favoris");
+                    favorites.display();
+                }
             }
 
             if(Objects.equals(input, "0")) {
+                SaveFavoritesXML.createDocument(favorites);
                 break;
             }
         }
