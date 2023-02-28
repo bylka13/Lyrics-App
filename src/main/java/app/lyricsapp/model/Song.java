@@ -30,8 +30,8 @@ public class Song {
     public String toString(){
 
         return "\nArtist: " + getAuthor() +
-               "\nTitre: " + getSong() +
-               "\nLyric: " + getTitle() +
+               "\nTitre: " + getTitle() +
+               "\nLyric: " + getSong() +
                "\n";
     }
 
