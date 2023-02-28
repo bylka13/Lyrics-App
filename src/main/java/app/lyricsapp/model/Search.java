@@ -105,7 +105,7 @@ public class Search {
                 Lyric = newNode.getTextContent();
             }
         }
-        return new Song(LyricSong, LyricArtist,Lyric);
+        return new Song(Lyric, LyricArtist,LyricSong);
 
     }
 }
