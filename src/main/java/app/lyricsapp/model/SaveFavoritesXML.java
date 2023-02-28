@@ -20,29 +20,24 @@ public class SaveFavoritesXML {
         DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
         DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
         Document doc = docBuilder.newDocument();
-
-        int i = 1;
+        Element rootElement = doc.createElement("Playlist");
+        doc.appendChild(rootElement);
         for (Song song : favorites.getSongs()) {
-            Element songElement = doc.createElement("song");
-            doc.appendChild(songElement);
+            Element songElement = doc.createElement("Song");
+            rootElement.appendChild(songElement);
 
-            Element lyricId = doc.createElement("lyricId");
-            lyricId.setTextContent(String.valueOf(i));
-            songElement.appendChild(lyricId);
-
-            Element title = doc.createElement("title");
+            Element title = doc.createElement("Title");
             title.setTextContent(song.getTitle());
             songElement.appendChild(title);
 
-            Element artist = doc.createElement("artist");
+            Element artist = doc.createElement("Artist");
             artist.setTextContent(song.getAuthor());
             songElement.appendChild(artist);
 
-            Element lyric = doc.createElement("lyric");
+            Element lyric = doc.createElement("Lyric");
             lyric.setTextContent(song.getSong());
             songElement.appendChild(lyric);
 
-            i++;
         }
         try (FileOutputStream output =
                      new FileOutputStream("src/main/resources/fichiers xml/favorites.xml")) {
