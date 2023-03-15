@@ -31,11 +31,19 @@ public class Playlist {
     }
 
     public void display(){
-        int num = 0;
+        int num = 1;
         for (Song song : songs){
             System.out.println(num + " "+ song.getTitle() + ", "+ song.getAuthor());
             num++;
         }
+    }
+
+    public Song getASong(int index){
+        return getSongs().get(index);
+    }
+
+    public Song deleteASong (int index){
+        return getSongs().remove(index);
     }
 
     public void addAllMusics(ArrayList<Song> songs){
