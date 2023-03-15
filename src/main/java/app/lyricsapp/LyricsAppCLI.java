@@ -118,6 +118,7 @@ public class LyricsAppCLI {
                     Scanner scanner11 = new Scanner(System.in);
                     int indexOfMusic2 = Integer.parseInt(scanner11.nextLine());
                     favorites.deleteMusic(indexOfMusic2 - 1);
+                    SaveFavoritesXML.createDocument(favorites);
                 }
 
                 else {
