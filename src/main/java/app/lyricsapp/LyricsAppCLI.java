@@ -117,7 +117,7 @@ public class LyricsAppCLI {
                     System.out.println("Selectionnez la chanson à supprimer (entrez un nombre) : \n");
                     Scanner scanner11 = new Scanner(System.in);
                     int indexOfMusic2 = Integer.parseInt(scanner11.nextLine());
-                    favorites.deleteASong(indexOfMusic2 - 1);
+                    favorites.deleteMusic(indexOfMusic2 - 1);
                 }
 
                 else {
