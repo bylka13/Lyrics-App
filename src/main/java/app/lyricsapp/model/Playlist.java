@@ -6,7 +6,7 @@ public class Playlist {
     private ArrayList<Song> songs;
     public Playlist (String playlistName){
         this.playlistName = playlistName;
-        this.songs = new ArrayList<Song>();
+        this.songs = new ArrayList<>();
 
     }
     public void addMusic (Song song) throws AddMusicException {
@@ -40,10 +40,6 @@ public class Playlist {
 
     public Song getASong(int index){
         return getSongs().get(index);
-    }
-
-    public Song deleteASong (int index){
-        return getSongs().remove(index);
     }
 
     public void addAllMusics(ArrayList<Song> songs){
