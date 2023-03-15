@@ -19,9 +19,9 @@ public class LyricsAppCLI {
             favorites.addAllMusics(ReadXml.readXml("src/main/resources/fichiers xml/favorites.xml"));
             System.out.println("Le fichier favoris a été chargé \n");
         }
-        System.out.println("Welcome to the lyrics app \n");
+        System.out.println("Bienvenue dans la lyrics app \n");
         while (true) {
-            System.out.println("Input your command: ");
+            System.out.println("Entrez votre commande: ");
             System.out.println("Menu: \n" +
                                "Recherche de chansons: \n" +
                                "1/ Par Artiste et par Titre \n" +
@@ -98,7 +98,7 @@ public class LyricsAppCLI {
 
             if(Objects.equals(input, "3")) {
                 favorites.display();
-                System.out.println("Input your command: ");
+                System.out.println("Entrez votre commande: ");
                 System.out.println("Menu: \n" +
                         "Recherche de chansons: \n" +
                         "1/ Afficher une chanson \n" +
