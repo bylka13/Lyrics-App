@@ -16,29 +16,9 @@ import java.util.ResourceBundle;
 
 public class LyricsAppController implements Initializable {
 
-    @FXML private AnchorPane rootPane;
 
-    //  @Override
+    @Override
     public void initialize(URL location, ResourceBundle resourceBundle) {}
 
-    public void searchByArtistAndTitle(javafx.event.ActionEvent actionEvent) throws IOException {
-        VBox pane = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/app/lyricsapp/view/searchByArtistAndTitle.fxml")));
-        rootPane.getChildren().setAll(pane);
-    }
-
-    public void searchByLyrics(javafx.event.ActionEvent actionEvent) throws IOException {
-        VBox pane = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/app/lyricsapp/view/searchByLyrics.fxml")));
-        rootPane.getChildren().setAll(pane);
-    }
-
-    public void help(javafx.event.ActionEvent actionEvent) throws IOException{
-        VBox pane = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/app/lyricsapp/view/help.fxml")));
-        rootPane.getChildren().setAll(pane);
-    }
-
-    public void home(javafx.event.ActionEvent actionEvent) throws IOException{
-        VBox pane = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/app/lyricsapp/view/home.fxml")));
-        rootPane.getChildren().setAll(pane);
-    }
 
 }
