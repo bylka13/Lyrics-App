@@ -9,15 +9,8 @@ public class Playlist {
         this.songs = new ArrayList<>();
 
     }
-    public void addMusic (Song song) throws AddMusicException {
-
-        if (songs.contains(song)){
-            throw new AddMusicException(song.getTitle(), song.getAuthor());
-
-        }
-        else {
-            songs.add(song);
-        }
+    public void addMusic (Song song){
+        songs.add(song);
     }
     public void deleteMusic (int pos){
         songs.remove(pos);
@@ -38,6 +31,14 @@ public class Playlist {
         }
     }
 
+    public boolean contains(Song song){
+        for(Song element : songs) {
+            if (song.getTitle() == element.getTitle() && song.getAuthor() == element.getAuthor() && song.getSong() == element.getSong()){
+                return false;
+            }
+        }
+        return true;
+    }
     public Song getASong(int index){
         return getSongs().get(index);
     }
