@@ -33,11 +33,11 @@ public class Playlist {
 
     public boolean contains(Song song){
         for(Song element : songs) {
-            if (song.getTitle() == element.getTitle() && song.getAuthor() == element.getAuthor() && song.getSong() == element.getSong()){
-                return false;
+            if (song.equals(element)){
+                return true;
             }
         }
-        return true;
+        return false;
     }
     public Song getASong(int index){
         return getSongs().get(index);
