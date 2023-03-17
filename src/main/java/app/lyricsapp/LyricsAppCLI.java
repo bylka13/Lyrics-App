@@ -11,7 +11,7 @@ import java.util.Objects;
 import java.util.Scanner;
 
 public class LyricsAppCLI {
-    public static void main(String[] args) throws IOException, ParserConfigurationException, SAXException, AddMusicException, TransformerException {
+    public static void main(String[] args) throws IOException, ParserConfigurationException, SAXException, TransformerException {
         Search mySearch = new Search();
         Playlist favorites = new Playlist("favorites");
         File file = new File("src/main/resources/fichiers xml/favorites.xml");
@@ -45,7 +45,12 @@ public class LyricsAppCLI {
                 System.out.println("1/ Oui \n" +
                                    "2/ Non");
                 if(Objects.equals(scanner3.nextLine(), "1")){
-                    favorites.addMusic(song);
+                    if (! favorites.contains(song)) {
+                        favorites.addMusic(song);
+                    }
+                    else {
+                        System.out.println("Cette chanson '" + song.getTitle() + "' de " + song.getAuthor() + " est déjà dans la playlist.");
+                    }
                     SaveFavoritesXML.createDocument(favorites);
                 }
                 else {
@@ -86,9 +91,15 @@ public class LyricsAppCLI {
                 Scanner scanner8 = new Scanner(System.in);
                 int indexOfMusic = Integer.parseInt(scanner8.nextLine());
                 if (indexOfMusic == 1){
-                    favorites.addMusic(song2);
+                    if (! favorites.contains(song2)) {
+                        favorites.addMusic(song2);
+                        System.out.println("La chanson a bien été ajoutée. \n");
+                    }
+                    else {
+                        System.out.println("Cette chanson '" + song2.getTitle() + "' de " + song2.getAuthor() + " est déjà dans la playlist.");
+                    }
                     SaveFavoritesXML.createDocument(favorites);
-                    System.out.println("La chanson a bien été ajoutée. \n");
+
                 }
                 else {
                     continue;
