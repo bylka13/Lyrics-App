@@ -14,7 +14,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class ReadXml {
-    public static ArrayList<Song> readXml(String path) throws ParserConfigurationException, IOException, SAXException, AddMusicException {
+    public static ArrayList<Song> readXml(String path) throws ParserConfigurationException, IOException, SAXException {
         ArrayList<Song> favorites = new ArrayList<>();
         // Constructeur de fichier
         File xmlFile = new File(path);
