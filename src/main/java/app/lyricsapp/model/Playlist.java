@@ -6,11 +6,18 @@ public class Playlist {
     private ArrayList<Song> songs;
     public Playlist (String playlistName){
         this.playlistName = playlistName;
-        this.songs = new ArrayList<>();
-
+        this.songs = new ArrayList<Song>();
     }
-    public void addMusic (Song song){
-        songs.add(song);
+
+    public void addMusic (Song song) throws AddMusicException {
+
+        if (songs.contains(song)){
+            throw new AddMusicException(song.getTitle(), song.getAuthor());
+
+        }
+        else {
+            songs.add(song);
+        }
     }
     public void deleteMusic (int pos){
         songs.remove(pos);
@@ -24,23 +31,11 @@ public class Playlist {
     }
 
     public void display(){
-        int num = 1;
+        int num = 0;
         for (Song song : songs){
             System.out.println(num + " "+ song.getTitle() + ", "+ song.getAuthor());
             num++;
         }
-    }
-
-    public boolean contains(Song song){
-        for(Song element : songs) {
-            if (song.equals(element)){
-                return true;
-            }
-        }
-        return false;
-    }
-    public Song getASong(int index){
-        return getSongs().get(index);
     }
 
     public void addAllMusics(ArrayList<Song> songs){
