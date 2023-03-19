@@ -133,10 +133,6 @@ public class LyricsAppCLI {
                 SaveFavoritesXML.createDocumentCLI(favorites);
                 break;
             }
-
-            else{
-                continue;
-            }
         }
     }
 }
