@@ -35,7 +35,7 @@ public class SaveFavoritesXML {
             songElement.appendChild(artist);
 
             Element lyric = doc.createElement("Lyric");
-            lyric.setTextContent(song.getSong());
+            lyric.setTextContent(song.getLyric());
             songElement.appendChild(lyric);
 
         }
@@ -47,9 +47,7 @@ public class SaveFavoritesXML {
         }
     }
 
-    private static void writeXml(Document doc,
-                                 OutputStream output)
-            throws TransformerException {
+    private static void writeXml(Document doc, OutputStream output) throws TransformerException {
 
         TransformerFactory transformerFactory = TransformerFactory.newInstance();
         Transformer transformer = transformerFactory.newTransformer();
