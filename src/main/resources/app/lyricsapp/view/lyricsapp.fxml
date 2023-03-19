@@ -1,128 +1,119 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 
-<BorderPane xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.lyricsapp.controller.LyricsAppController">
+<BorderPane xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.lyricsapp.controller.LyricsAppController">
     <top>
 
         <VBox prefHeight="280.0" prefWidth="900.0" spacing="10.0">
-            <HBox spacing="10.0">
-                <Label fx:id="LyricsTitle" alignment="CENTER" prefHeight="74.0" prefWidth="900.0" text="LYRICS APP">
-                    <font>
-                        <Font name="Corbel" size="25.0" />
-                    </font>
-                </Label>
-            </HBox>
-            <Separator fx:id="separator" orientation="HORIZONTAL" prefHeight="70.0" prefWidth="900.0" />
-            <HBox fx:id="searchBlock" prefHeight="183.0" prefWidth="900.0" spacing="20.0">
-                <VBox prefHeight="202.0" prefWidth="269.0" spacing="10.0">
-                    <Label text="Artist:">
-                        <font>
-                            <Font size="16.0" />
-                        </font></Label>
-                    <TextField fx:id="inputArtist" promptText="Enter The Name Of Your Artist">
-                        <font>
-                            <Font size="18.0" />
-                        </font></TextField>
-                    <Label text="Title:">
-                        <font>
-                            <Font size="16.0" />
-                        </font></Label>
-                    <TextField fx:id="inputTitle" prefHeight="43.0" prefWidth="209.0" promptText="Enter Your Song Title">
-                        <font>
-                            <Font size="20.0" />
-                        </font></TextField>
-                    <VBox alignment="CENTER">
-                        <Button fx:id="searchLyricDirectButton" text="Search" textAlignment="CENTER">
-                            <tooltip>
-                                <Tooltip text="Click To Search Songs By Artist And Title" />
-                            </tooltip>
-                            <font>
-                                <Font size="18.0" />
-                            </font>
-                        </Button>
-                    </VBox>
-                    <HBox.margin>
-                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                    </HBox.margin>
-
-                </VBox>
-                <Separator orientation="VERTICAL">
-                    <padding>
-                        <Insets top="-14.0" />
-                    </padding></Separator>
-                <VBox prefHeight="195.0" prefWidth="267.0" spacing="10.0">
-                    <VBox alignment="CENTER" prefHeight="70.0" prefWidth="272.0">
-                        <HBox>
-                            <Label prefHeight="26.0" prefWidth="139.0" text="Number of results:">
-                                <HBox.margin>
-                                    <Insets top="5.0" />
-                                </HBox.margin>
-                                <font>
-                                    <Font size="16.0" />
-                                </font></Label>
-                            <Label fx:id="resultsLabel" />
-                            <Spinner fx:id="numberOfResults" initialValue="1" prefHeight="31.0" prefWidth="55.0" />
-                        </HBox>
-                    </VBox>
-                    <Label text="Lyrics:">
-                        <font>
-                            <Font size="16.0" />
-                        </font></Label>
-                    <TextField fx:id="inputLyrics" promptText="Enter Your Song Lyrics">
-                        <font>
-                            <Font size="18.0" />
-                        </font></TextField>
-                    <Button fx:id="searchLyricTextButton" text="Search">
-                        <tooltip>
-                            <Tooltip text="Click To Search Songs By Lyrics" />
-                        </tooltip>
-                        <VBox.margin>
-                            <Insets left="65.0" />
-                        </VBox.margin>
-                        <font>
-                            <Font size="18.0" />
-                        </font>
-                    </Button>
-                    <HBox.margin>
-                        <Insets bottom="10.0" left="19.0" right="10.0" top="10.0" />
-                    </HBox.margin>
-                </VBox>
-                <Separator orientation="VERTICAL" prefHeight="195.0" prefWidth="0.0">
-                    <padding>
-                        <Insets top="-14.0" />
-                    </padding></Separator>
-                <VBox prefHeight="30.0" prefWidth="180.0" spacing="10.0">
-
-                    <HBox.margin>
-                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                    </HBox.margin>
-                    <children>
-                        <Button fx:id="myFavButton" prefHeight="97.0" prefWidth="187.0" text="List Of Favorites">
-                            <tooltip>
-                                <Tooltip text="Click To Display Your Favorites" />
-                            </tooltip>
-                        </Button>
-                        <Button fx:id="helpButton" prefHeight="97.0" prefWidth="187.0" text="Help">
-                            <tooltip>
-                                <Tooltip text="Click To Get Help" />
-                            </tooltip>
-                        </Button>
-                    </children>
-                </VBox>
-                <BorderPane.margin>
-                    <Insets />
-                </BorderPane.margin>
-            </HBox>
+         <children>
+            <AnchorPane prefHeight="280.0" prefWidth="900.0">
+               <children>
+                  <Label fx:id="LyricsTitle" layoutY="-1.0" prefHeight="33.0" prefWidth="900.0" text="                                          LYRICSAPP">
+                     <font>
+                        <Font size="32.0" />
+                     </font>
+                  </Label>
+                  <Line endX="727.199951171875" endY="0.20000457763671875" layoutX="176.0" layoutY="46.0" startX="-176.00001525878906" startY="0.20000457763671875" stroke="#2db734" />
+                  <Line endX="100.00003051757812" endY="145.29998779296875" layoutX="199.0" layoutY="139.0" startX="100.0" startY="-93.29999542236328" stroke="#2db734" />
+                  <Line endX="46.4000244140625" endY="189.29998779296875" layoutX="564.0" layoutY="96.0" startX="46.4000244140625" startY="-50.29999542236328" stroke="#2db734" />
+                  <Line endX="698.7999877929688" endY="5.79998779296875" layoutX="206.0" layoutY="279.0" startX="-205.20001220703125" startY="5.79998779296875" stroke="#2db734" />
+                  <Spinner fx:id="numberOfResults" layoutX="478.0" layoutY="80.0" prefHeight="26.0" prefWidth="64.0" />
+                  <Label layoutX="314.0" layoutY="80.0" text="Number of results :">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="314.0" layoutY="145.0" text="Lyrics : ">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="inputLyrics" layoutX="316.0" layoutY="172.0" prefHeight="26.0" prefWidth="281.0" promptText="Enter Your Lyrics">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </TextField>
+                  <Button fx:id="searchLyricTextButton" layoutX="411.0" layoutY="220.0" mnemonicParsing="false" text="Search">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <tooltip>
+                        <Tooltip text="Click To Search By Lyrics">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Tooltip>
+                     </tooltip>
+                  </Button>
+                  <Button fx:id="myFavButton" layoutX="635.0" layoutY="63.0" mnemonicParsing="false" prefHeight="86.0" prefWidth="237.0" text="List Of Favorites">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                     <tooltip>
+                        <Tooltip text="Click To Show Favorites">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Tooltip>
+                     </tooltip>
+                  </Button>
+                  <Button fx:id="helpButton" layoutX="633.0" layoutY="177.0" mnemonicParsing="false" prefHeight="86.0" prefWidth="239.0" text="Help">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                     <tooltip>
+                        <Tooltip text="Click To Get Help">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Tooltip>
+                     </tooltip>
+                  </Button>
+                  <Button fx:id="searchLyricDirectButton" layoutX="97.0" layoutY="220.0" mnemonicParsing="false" text="Search">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <tooltip>
+                        <Tooltip text="Click To Search By Artist And Title">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Tooltip>
+                     </tooltip>
+                  </Button>
+                  <TextField fx:id="inputTitle" layoutX="75.0" layoutY="153.0" prefHeight="37.0" prefWidth="199.0" promptText="Enter Your Song Title">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </TextField>
+                  <TextField fx:id="inputArtist" layoutX="75.0" layoutY="88.0" prefHeight="37.0" prefWidth="199.0" promptText="Enter The Name Of Your Artist">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </TextField>
+                  <Label layoutX="18.0" layoutY="151.0" text="Title :">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="14.0" layoutY="92.0" text="Artist :">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+         </children>
         </VBox>
     </top>
     <left>
         <ScrollPane prefHeight="450.0" prefWidth="900.0" BorderPane.alignment="CENTER">
             <content>
-                <GridPane fx:id="gridPane" prefHeight="450.0" prefWidth="900.0">
+                <GridPane fx:id="gridPane" prefHeight="478.0" prefWidth="900.0">
                     <columnConstraints>
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                     </columnConstraints>
