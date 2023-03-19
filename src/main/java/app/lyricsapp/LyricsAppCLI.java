@@ -14,9 +14,9 @@ public class LyricsAppCLI {
     public static void main(String[] args) throws IOException, ParserConfigurationException, SAXException, AddMusicException, TransformerException {
         Search mySearch = new Search();
         Playlist favorites = new Playlist("favorites");
-        File file = new File("src/main/resources/fichiers xml/favorites.xml");
+        File file = new File("src/main/resources/fichiers xml/favoritesCLI.xml");
         if (file.exists()) {
-            favorites.addAllMusics(new ReadXml().readXml("src/main/resources/fichiers xml/favorites.xml"));
+            favorites.addAllMusics(new ReadXml().readXml("src/main/resources/fichiers xml/favoritesCLI.xml"));
             System.out.println("Le fichier favoris a été chargé \n");
         }
         System.out.println("Welcome to the lyrics app \n");
@@ -47,7 +47,7 @@ public class LyricsAppCLI {
                 if(Objects.equals(scanner3.nextLine(), "1")) {
                     if (! favorites.contains(song)) {
                         favorites.addMusic(song);
-                        SaveFavoritesXML.createDocument(favorites);
+                        SaveFavoritesXML.createDocumentCLI(favorites);
                         song.setFavorite(true);
                         System.out.println("La chanson a bien été ajoutée.");
                     }
@@ -89,7 +89,7 @@ public class LyricsAppCLI {
                 if(Objects.equals(scanner3.nextLine(), "1")){
                     if (! favorites.contains(song)) {
                         favorites.addMusic(song);
-                        SaveFavoritesXML.createDocument(favorites);
+                        SaveFavoritesXML.createDocumentCLI(favorites);
                         song.setFavorite(true);
                         System.out.println("La chanson a bien été ajoutée. \n");
                     }
@@ -120,7 +120,7 @@ public class LyricsAppCLI {
                     int indexOfMusic2 = Integer.parseInt(scanner11.nextLine());
                     favorites.getSongs().get(indexOfMusic2 - 1).setFavorite(false);
                     favorites.deleteMusic(indexOfMusic2 - 1);
-                    SaveFavoritesXML.createDocument(favorites);
+                    SaveFavoritesXML.createDocumentCLI(favorites);
                     System.out.println("La chanson a été supprimée");
                 }
 
@@ -130,7 +130,7 @@ public class LyricsAppCLI {
             }
 
             if(Objects.equals(input, "0")) {
-                SaveFavoritesXML.createDocument(favorites);
+                SaveFavoritesXML.createDocumentCLI(favorites);
                 break;
             }
 
