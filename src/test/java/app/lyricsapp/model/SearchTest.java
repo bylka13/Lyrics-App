@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class SearchTest {
-
+    Search search = new Search();
     @Test
     public void testGetToPrint(){
         Search search = new Search();
@@ -57,7 +57,7 @@ public class SearchTest {
                 "In the summertime\n" +
                 "In the summertime","The Kinks","Sunny Afternoon");
         try {
-            assertThat(Search.searchLyricDirect("The Kinks","Sunny Afternoon")).isEqualTo(song);
+            assertThat(search.searchLyricDirect("The Kinks","Sunny Afternoon")).isEqualTo(song);
         } catch (IOException | ParserConfigurationException | SAXException e) {
             throw new RuntimeException(e);
         }

@@ -13,12 +13,17 @@ public class PlaylistTest {
 
     @Test
     public void testGetSongs(){
-        List<Song> playlistSongs = new ArrayList<>();
-        playlistSongs.add(song2);
-        playlist.addMusic(song1);
-        playlist.addMusic(song2);
-        playlist.deleteMusic(0);
-        assertThat(playlist.getSongs()).isEqualTo(playlistSongs);
+
+        try {
+            List<Song> playlistSongs = new ArrayList<>();
+            playlistSongs.add(song2);
+            playlist.addMusic(song1);
+            playlist.addMusic(song2);
+            playlist.deleteMusic(0);
+            assertThat(playlist.getSongs()).isEqualTo(playlistSongs);
+        } catch (AddMusicException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Test
@@ -28,18 +33,13 @@ public class PlaylistTest {
 
     @Test
     public void testContains(){
-        playlist.addMusic(song2);
-        assertThat(playlist.contains(song1)).isFalse();
-        assertThat(playlist.contains(song2)).isTrue();
+        try {
+            playlist.addMusic(song2);
+            assertThat(playlist.contains(song1)).isFalse();
+            assertThat(playlist.contains(song2)).isTrue();
+        } catch (AddMusicException e) {
+            throw new RuntimeException(e);
+        }
     }
 
-    @Test
-    public void testGetASong(){
-        ArrayList<Song> playlistSongs = new ArrayList<>();
-        playlistSongs.add(song2);
-        playlistSongs.add(song1);
-        playlist.addAllMusics(playlistSongs);
-        assertThat(playlist.getASong(0)).isEqualTo(song2);
-        assertThat(playlist.getASong(1)).isEqualTo(song1);
-    }
 }

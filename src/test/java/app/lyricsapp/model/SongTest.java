@@ -18,7 +18,7 @@ public class SongTest {
 
     @Test
     public void testGetSong(){
-        assertThat(song.getSong()).isEqualTo("http://www.chartlyrics.com/nz21F2NcCUqlk93kYI4NuQ/Sunny+Afternoon.aspx%3C/SongUrl");
+        assertThat(song.getLyric()).isEqualTo("http://www.chartlyrics.com/nz21F2NcCUqlk93kYI4NuQ/Sunny+Afternoon.aspx%3C/SongUrl");
     }
 
     @Test
