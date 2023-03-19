@@ -18,7 +18,6 @@ import javafx.scene.Scene;
 import javax.xml.transform.TransformerException;
 import java.util.ResourceBundle;
 
-
 public class LyricsAppController implements Initializable {
     @FXML private Button helpButton;
     @FXML private Label LyricsTitle;
@@ -37,15 +36,6 @@ public class LyricsAppController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resourceBundle) {
 
-        File file = new File("src/main/resources/fichiers xml/favorites.xml");
-        if (file.exists()) {
-            try {
-                favorites.addAllMusics(new ReadXml().readXml("src/main/resources/fichiers xml/favorites.xml"));
-            } catch (ParserConfigurationException | IOException | SAXException | AddMusicException e) {
-                throw new RuntimeException(e);
-            }
-            System.out.println("Le fichier favoris a été chargé");
-        }
         SpinnerValueFactory<Integer> valueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 25, 1);
         numberOfResults.setValueFactory(valueFactory);
 
@@ -210,7 +200,7 @@ public class LyricsAppController implements Initializable {
                 tooltip.setStyle("-fx-font-size: 12;");
                 addFav.setTooltip(tooltip);
 
-                if(favorites.contains(song)){
+                if(favorites.getSongs().contains(song)){
                     addFav.setStyle("-fx-text-fill: red;-fx-font-size: 30px;");
                 } else {
                     addFav.setStyle("-fx-text-fill: black;-fx-font-size: 30px;");
@@ -339,11 +329,6 @@ public class LyricsAppController implements Initializable {
                     addFav.setStyle("-fx-text-fill: black; -fx-font-size: 30px;");
                     song.setFavorite(false);
                     favorites.deleteMusic(finalI);
-                    try {
-                        SaveFavoritesXML.createDocument(favorites);
-                    } catch (ParserConfigurationException | TransformerException e) {
-                        throw new RuntimeException(e);
-                    }
                     gridPane.getChildren().remove(addFav);
                     gridPane.getChildren().remove(songButton);
                 });
@@ -399,19 +384,13 @@ public class LyricsAppController implements Initializable {
         String imageUrl = new Search().showCovert(song.getAuthor(), song.getTitle());
         Image image = null;
         if (imageUrl == null || imageUrl.isEmpty()) {
-            File file = new File("src/main/resources/cover.jpg");
-            image = new Image(file.toURI().toString());
+            image = new Image(new File("src/main/resources/cover.jpg").toURI().toString());
         } else {
-            try {
-                File newFile = new File("src/main/resources/cover.jpg");
-                image = new Image(imageUrl);
-                if(image.isError()){
-                    image = new Image(newFile.toURI().toString());
-                }
-            } catch (Exception e) {
-                File file = new File("src/main/resources/cover.jpg");
-                image = new Image(file.toURI().toString());
+            image = new Image(imageUrl);
+            if(image.isError()){
+                image = new Image(new File("src/main/resources/cover.jpg").toURI().toString());
             }
+
         }
         ImageView imageView = new ImageView(image);
         imageView.setFitHeight(250);
@@ -421,7 +400,11 @@ public class LyricsAppController implements Initializable {
 
         TextArea textArea = new TextArea();
         textArea.setPrefSize(500, 720);
-        textArea.setText(new Search().searchLyricDirect(song.getAuthor(), song.getTitle()).getLyric());
+        String Lyric = new Search().searchLyricDirect(song.getAuthor(), song.getTitle()).getLyric();
+        if(Lyric == null || Lyric.equals("")){
+            Lyric = "No Lyrics Founded";
+        }
+        textArea.setText(Lyric);
         root.setCenter(textArea);
 
         Scene scene = new Scene(root);
