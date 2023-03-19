@@ -18,6 +18,7 @@ import javafx.scene.Scene;
 import javax.xml.transform.TransformerException;
 import java.util.ResourceBundle;
 
+
 public class LyricsAppController implements Initializable {
     @FXML private Button helpButton;
     @FXML private Label LyricsTitle;
@@ -36,6 +37,15 @@ public class LyricsAppController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resourceBundle) {
 
+        File file = new File("src/main/resources/fichiers xml/favorites.xml");
+        if (file.exists()) {
+            try {
+                favorites.addAllMusics(new ReadXml().readXml("src/main/resources/fichiers xml/favorites.xml"));
+            } catch (ParserConfigurationException | IOException | SAXException | AddMusicException e) {
+                throw new RuntimeException(e);
+            }
+            System.out.println("Le fichier favoris a été chargé");
+        }
         SpinnerValueFactory<Integer> valueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 25, 1);
         numberOfResults.setValueFactory(valueFactory);
 
