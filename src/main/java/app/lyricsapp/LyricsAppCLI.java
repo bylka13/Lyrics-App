@@ -17,9 +17,9 @@ public class LyricsAppCLI {
         File file = new File("src/main/resources/fichiers xml/favorites.xml");
         if (file.exists()) {
             favorites.addAllMusics(new ReadXml().readXml("src/main/resources/fichiers xml/favorites.xml"));
-            System.out.println("Le fichier favoris a été chargé");
+            System.out.println("Le fichier favoris a été chargé \n");
         }
-        System.out.println("Welcome to the lyrics app");
+        System.out.println("Welcome to the lyrics app \n");
         while (true) {
             System.out.println("Input your command: ");
             System.out.println("Menu: \n" +
@@ -44,10 +44,16 @@ public class LyricsAppCLI {
                 System.out.println("Voulez-vous ajouter ce son dans la liste des favoris ?");
                 System.out.println("1/ Oui \n" +
                                    "2/ Non");
-                if(Objects.equals(scanner3.nextLine(), "1")){
-                    favorites.addMusic(song);
-                    SaveFavoritesXML.createDocument(favorites);
-                    song.setFavorite(true);
+                if(Objects.equals(scanner3.nextLine(), "1")) {
+                    if (! favorites.contains(song)) {
+                        favorites.addMusic(song);
+                        SaveFavoritesXML.createDocument(favorites);
+                        song.setFavorite(true);
+                        System.out.println("La chanson a bien été ajoutée.");
+                    }
+                    else {
+                        System.out.println("Cette chanson '" + song.getTitle() + " de " + song.getAuthor() + " est déjà dans la playlist.");
+                    }
                 }
             }
 
@@ -75,27 +81,61 @@ public class LyricsAppCLI {
                 }
                 String artiste = mySearch.getToPrint().get(numberOfTheSong - 1).getAuthor();
                 String title = mySearch.getToPrint().get(numberOfTheSong - 1).getTitle();
-                System.out.println(mySearch.searchLyricDirect(artiste, title));
+                Song song = mySearch.searchLyricDirect(artiste, title);
+                System.out.println(song);
                 System.out.println("Voulez-vous ajouter ce son dans la liste des favoris ?");
                 System.out.println("1/ Oui \n" +
                         "2/ Non");
                 if(Objects.equals(scanner3.nextLine(), "1")){
-                    favorites.addMusic(mySearch.searchLyricDirect(artiste, title));
-                    SaveFavoritesXML.createDocument(favorites);
-                    Song song = mySearch.searchLyricDirect(artiste, title);
-                    song.setFavorite(true);
+                    if (! favorites.contains(song)) {
+                        favorites.addMusic(song);
+                        SaveFavoritesXML.createDocument(favorites);
+                        song.setFavorite(true);
+                        System.out.println("La chanson a bien été ajoutée. \n");
+                    }
+                    else {
+                        System.out.println("Cette chanson '" + song.getTitle() + " de " + song.getAuthor() + " est déjà dans la playlist. \n");
+                    }
                 }
             }
 
             if(Objects.equals(input, "3")) {
                 favorites.display();
+                System.out.println("Entrez votre commande: ");
+                System.out.println("1/ Afficher une chanson \n" +
+                                   "2/ Supprimer une chanson \n" +
+                                   "0/ Pour retourner au menu principal \n");
+                Scanner scanner9 = new Scanner(System.in);
+                String input2 = scanner9.nextLine();
+                if (Objects.equals(input2, "1")){
+                    System.out.println("Selectionnez la chanson à afficher en détails (entrez un nombre): \n");
+                    Scanner scanner10 = new Scanner(System.in);
+                    int indexOfMusic = Integer.parseInt(scanner10.nextLine());
+                    System.out.println(favorites.getSongs().get(indexOfMusic - 1));
+                }
+
+                if (Objects.equals(input2, "2")){
+                    System.out.println("Selectionnez la chanson à supprimer (entrez un nombre) : \n");
+                    Scanner scanner11 = new Scanner(System.in);
+                    int indexOfMusic2 = Integer.parseInt(scanner11.nextLine());
+                    favorites.getSongs().get(indexOfMusic2 - 1).setFavorite(false);
+                    favorites.deleteMusic(indexOfMusic2 - 1);
+                    SaveFavoritesXML.createDocument(favorites);
+                    System.out.println("La chanson a été supprimée");
+                }
+
+                else {
+                    continue;
+                }
             }
-
-
 
             if(Objects.equals(input, "0")) {
                 SaveFavoritesXML.createDocument(favorites);
                 break;
+            }
+
+            else{
+                continue;
             }
         }
     }
