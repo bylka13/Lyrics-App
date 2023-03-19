@@ -210,7 +210,7 @@ public class LyricsAppController implements Initializable {
                 tooltip.setStyle("-fx-font-size: 12;");
                 addFav.setTooltip(tooltip);
 
-                if(favorites.getSongs().contains(song)){
+                if(favorites.contains(song)){
                     addFav.setStyle("-fx-text-fill: red;-fx-font-size: 30px;");
                 } else {
                     addFav.setStyle("-fx-text-fill: black;-fx-font-size: 30px;");
@@ -339,6 +339,11 @@ public class LyricsAppController implements Initializable {
                     addFav.setStyle("-fx-text-fill: black; -fx-font-size: 30px;");
                     song.setFavorite(false);
                     favorites.deleteMusic(finalI);
+                    try {
+                        SaveFavoritesXML.createDocument(favorites);
+                    } catch (ParserConfigurationException | TransformerException e) {
+                        throw new RuntimeException(e);
+                    }
                     gridPane.getChildren().remove(addFav);
                     gridPane.getChildren().remove(songButton);
                 });
