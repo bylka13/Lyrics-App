@@ -40,7 +40,7 @@ public class LyricsAppController implements Initializable {
         numberOfResults.setValueFactory(valueFactory);
 
         CornerRadii buttonCornerRadii = new CornerRadii(50, 50, 50, 50, false);
-        BackgroundFill buttonBackgroundFill = new BackgroundFill(Color.GREEN, buttonCornerRadii, null);
+        BackgroundFill buttonBackgroundFill = new BackgroundFill(new Color(0.1765, 0.7176, 0.2039, 1.0), buttonCornerRadii, null);
         Background buttBackground = new Background(buttonBackgroundFill);
 
         myFavButton.setBackground(buttBackground);
@@ -55,7 +55,7 @@ public class LyricsAppController implements Initializable {
 
         biggerButton(myFavButton, searchLyricTextButton, searchLyricDirectButton, helpButton);
 
-        LyricsTitle.setStyle("-fx-background-color: green; -fx-text-fill: white");
+        LyricsTitle.setStyle("-fx-background-color: #2DB734; -fx-text-fill: white");
 
         searchLyricDirectButton.setOnAction(event -> {
             gridPane.getChildren().clear();
@@ -102,11 +102,11 @@ public class LyricsAppController implements Initializable {
             gridPane.add(addFav, 1, 0);
 
             CornerRadii songButtonCornerRadii = new CornerRadii(50, 0, 0, 50, false);
-            BackgroundFill songButtonBackgroundFill = new BackgroundFill(Color.GREEN, songButtonCornerRadii, null);
+            BackgroundFill songButtonBackgroundFill = new BackgroundFill(new Color(0.1765, 0.7176, 0.2039, 1.0), songButtonCornerRadii, null);
             Background songButtonBackground = new Background(songButtonBackgroundFill);
 
             CornerRadii addFavCornerRadii = new CornerRadii(0, 50, 50, 0, false);
-            BackgroundFill addFavBackgroundFill = new BackgroundFill(Color.GREEN, addFavCornerRadii, null);
+            BackgroundFill addFavBackgroundFill = new BackgroundFill(new Color(0.1765, 0.7176, 0.2039, 1.0), addFavCornerRadii, null);
             Background addFavBackground = new Background(addFavBackgroundFill);
 
             songButton.setBackground(songButtonBackground);
@@ -210,11 +210,11 @@ public class LyricsAppController implements Initializable {
                 gridPane.setVgap(15);
 
                 CornerRadii songButtonCornerRadii = new CornerRadii(50, 0, 0, 50, false);
-                BackgroundFill songButtonBackgroundFill = new BackgroundFill(Color.GREEN, songButtonCornerRadii, null);
+                BackgroundFill songButtonBackgroundFill = new BackgroundFill(new Color(0.1765, 0.7176, 0.2039, 1.0), songButtonCornerRadii, null);
                 Background songButtonBackground = new Background(songButtonBackgroundFill);
 
                 CornerRadii addFavCornerRadii = new CornerRadii(0, 50, 50, 0, false);
-                BackgroundFill addFavBackgroundFill = new BackgroundFill(Color.GREEN, addFavCornerRadii, null);
+                BackgroundFill addFavBackgroundFill = new BackgroundFill(new Color(0.1765, 0.7176, 0.2039, 1.0), addFavCornerRadii, null);
                 Background addFavBackground = new Background(addFavBackgroundFill);
 
                 songButton.setBackground(songButtonBackground);
@@ -311,11 +311,11 @@ public class LyricsAppController implements Initializable {
                 gridPane.setVgap(15);
 
                 CornerRadii songButtonCornerRadii = new CornerRadii(50, 0, 0, 50, false);
-                BackgroundFill songButtonBackgroundFill = new BackgroundFill(Color.GREEN, songButtonCornerRadii, null);
+                BackgroundFill songButtonBackgroundFill = new BackgroundFill(new Color(0.1765, 0.7176, 0.2039, 1.0), songButtonCornerRadii, null);
                 Background songButtonBackground = new Background(songButtonBackgroundFill);
 
                 CornerRadii addFavCornerRadii = new CornerRadii(0, 50, 50, 0, false);
-                BackgroundFill addFavBackgroundFill = new BackgroundFill(Color.GREEN, addFavCornerRadii, null);
+                BackgroundFill addFavBackgroundFill = new BackgroundFill(new Color(0.1765, 0.7176, 0.2039, 1.0), addFavCornerRadii, null);
                 Background addFavBackground = new Background(addFavBackgroundFill);
 
                 songButton.setBackground(songButtonBackground);
