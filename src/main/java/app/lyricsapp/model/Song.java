@@ -44,7 +44,7 @@ public class Song {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Song that = (Song) o;
-        return Objects.equals(lyric, that.lyric) && Objects.equals(author, that.author) && Objects.equals(title, that.title);
+        return Objects.equals(author, that.author) && Objects.equals(title, that.title);
     }
 
     @Override
