@@ -35,7 +35,7 @@ public class SaveFavoritesXML {
             songElement.appendChild(artist);
 
             Element lyric = doc.createElement("Lyric");
-            lyric.setTextContent(song.getSong());
+            lyric.setTextContent(song.getLyric());
             songElement.appendChild(lyric);
 
         }
@@ -47,9 +47,38 @@ public class SaveFavoritesXML {
         }
     }
 
-    private static void writeXml(Document doc,
-                                 OutputStream output)
-            throws TransformerException {
+    public static void createDocumentCLI(Playlist favorites) throws ParserConfigurationException, TransformerException {
+        DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
+        DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
+        Document doc = docBuilder.newDocument();
+        Element rootElement = doc.createElement("Playlist");
+        doc.appendChild(rootElement);
+        for (Song song : favorites.getSongs()) {
+            Element songElement = doc.createElement("Song");
+            rootElement.appendChild(songElement);
+
+            Element title = doc.createElement("Title");
+            title.setTextContent(song.getTitle());
+            songElement.appendChild(title);
+
+            Element artist = doc.createElement("Artist");
+            artist.setTextContent(song.getAuthor());
+            songElement.appendChild(artist);
+
+            Element lyric = doc.createElement("Lyric");
+            lyric.setTextContent(song.getLyric());
+            songElement.appendChild(lyric);
+
+        }
+        try (FileOutputStream output =
+                     new FileOutputStream("src/main/resources/fichiers xml/favoritesCLI.xml")) {
+            writeXml(doc, output);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private static void writeXml(Document doc, OutputStream output) throws TransformerException {
 
         TransformerFactory transformerFactory = TransformerFactory.newInstance();
         Transformer transformer = transformerFactory.newTransformer();
