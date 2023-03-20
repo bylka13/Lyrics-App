@@ -160,4 +160,29 @@ public class Search {
         }
         return null;
     }
+
+    public String lyricToVerify(String artist, String title) throws ParserConfigurationException, IOException, SAXException {
+        String lien = "http://api.chartlyrics.com/apiv1.asmx/SearchLyricDirect?artist=" + removeStopWords(artist) + "&song=" +
+                removeStopWords(title);
+
+        DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+        DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+        Document document = dBuilder.parse(lien);
+
+        NodeList booksList = document.getElementsByTagName("GetLyricResult");
+
+        Node node = booksList.item(0);
+
+        NodeList nodeList = node.getChildNodes();
+
+        for(int i = 0; i < nodeList.getLength(); i++) {
+
+            Node newNode = nodeList.item(i);
+
+            if (newNode.getNodeName().equals("LyricUrl")) {
+                return newNode.getTextContent();
+            }
+        }
+        return null;
+    }
 }
