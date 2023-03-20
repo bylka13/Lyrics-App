@@ -38,21 +38,25 @@ public class LyricsAppCLI {
                 System.out.println("Veuillez entrer le titre de votre chanson :");
                 Scanner scanner2 = new Scanner(System.in);
                 String titre = scanner2.nextLine();
-                Song song = mySearch.searchLyricDirect(artist,titre);
-                System.out.println(song);
-                Scanner scanner3 = new Scanner(System.in);
-                System.out.println("Voulez-vous ajouter ce son dans la liste des favoris ?");
-                System.out.println("1/ Oui \n" +
-                                   "2/ Non");
-                if(Objects.equals(scanner3.nextLine(), "1")) {
-                    if (! favorites.contains(song)) {
-                        favorites.addMusic(song);
-                        SaveFavoritesXML.createDocumentCLI(favorites);
-                        song.setFavorite(true);
-                        System.out.println("La chanson a bien été ajoutée.");
-                    }
-                    else {
-                        System.out.println("Cette chanson '" + song.getTitle() + " de " + song.getAuthor() + " est déjà dans la playlist.");
+                Song song = mySearch.searchLyricDirect(artist, titre);
+                String toVerify = mySearch.lyricToVerify(artist, titre);
+                if(toVerify.equals("http://www.chartlyrics.com")) {
+                    System.out.println("Song Non Available\n");
+                } else {
+                    System.out.println(song);
+                    Scanner scanner3 = new Scanner(System.in);
+                    System.out.println("Voulez-vous ajouter ce son dans la liste des favoris ?");
+                    System.out.println("1/ Oui \n" +
+                            "2/ Non");
+                    if (Objects.equals(scanner3.nextLine(), "1")) {
+                        if (!favorites.contains(song)) {
+                            favorites.addMusic(song);
+                            SaveFavoritesXML.createDocumentCLI(favorites);
+                            song.setFavorite(true);
+                            System.out.println("La chanson a bien été ajoutée.");
+                        } else {
+                            System.out.println("Cette chanson '" + song.getTitle() + " de " + song.getAuthor() + " est déjà dans la playlist.");
+                        }
                     }
                 }
             }
