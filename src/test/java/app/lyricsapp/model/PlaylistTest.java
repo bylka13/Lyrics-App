@@ -35,8 +35,8 @@ public class PlaylistTest {
     public void testContains(){
         try {
             playlist.addMusic(song2);
-            assertThat(playlist.contains(song1)).isFalse();
-            assertThat(playlist.contains(song2)).isTrue();
+            assertThat(playlist.getSongs().contains(song1)).isFalse();
+            assertThat(playlist.getSongs().contains(song2)).isTrue();
         } catch (AddMusicException e) {
             throw new RuntimeException(e);
         }
