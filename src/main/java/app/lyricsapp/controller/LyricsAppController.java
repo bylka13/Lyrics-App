@@ -95,7 +95,7 @@ public class LyricsAppController implements Initializable {
                 songButton.setPrefWidth(700);
                 songButton.setPrefHeight(70);
                 songButton.setTooltip(new Tooltip("Click to Display Lyrics of " + song.getAuthor() + " - " + song.getTitle()));
-
+                songButton.setStyle("-fx-font-size: 20px;");
                 gridPane.add(songButton, 0, 0);
                 gridPane.setPadding(new Insets(0, 100, 250, 100));
                 songButton.setOnAction(event1 -> {
@@ -207,7 +207,7 @@ public class LyricsAppController implements Initializable {
                     songButton.setPrefWidth(700);
                     songButton.setPrefHeight(70);
                     songButton.setTooltip(new Tooltip("Click to Display Lyrics of " + song.getAuthor() + " - " + song.getTitle()));
-
+                    songButton.setStyle("-fx-font-size: 20px;");
                     gridPane.add(songButton, 0, i);
                     gridPane.setPadding(new Insets(20, 100, 250, 100));
                     songButton.setOnAction(event1 -> {
@@ -313,7 +313,7 @@ public class LyricsAppController implements Initializable {
                 songButton.setPrefWidth(700);
                 songButton.setPrefHeight(70);
                 songButton.setTooltip(new Tooltip("Click to Display Lyrics of " +  song.getAuthor() + " - " + song.getTitle()));
-
+                songButton.setStyle("-fx-font-size: 20px;");
                 gridPane.add(songButton, 0, i + 2);
                 gridPane.setPadding(new Insets(0,100,250,100));
                 songButton.setOnAction(event1 -> {
