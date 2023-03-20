@@ -1,5 +1,6 @@
 package app.lyricsapp.controller;
 
+import javafx.geometry.*;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -53,7 +54,7 @@ public class LyricsAppController implements Initializable {
         searchLyricDirectButton.setTextFill(Color.WHITE);
         helpButton.setTextFill(Color.WHITE);
 
-        biggerButton(myFavButton, searchLyricTextButton, searchLyricDirectButton, helpButton);
+        biggerButton(myFavButton);biggerButton(searchLyricDirectButton);biggerButton(searchLyricTextButton);biggerButton(helpButton);
 
         LyricsTitle.setStyle("-fx-background-color: #2DB734; -fx-text-fill: white");
 
@@ -70,123 +71,24 @@ public class LyricsAppController implements Initializable {
                 throw new RuntimeException(e);
             }
             Song song = search.getToPrint().get(0);
-            Button songButton = new Button();
-            songButton.setText(song.getAuthor() + " - " + song.getTitle());
-            songButton.setPadding(new Insets(0, 20, 0, 20));
-            songButton.setPrefWidth(700);
-            songButton.setPrefHeight(70);
-            songButton.setTooltip(new Tooltip("Click to Display Lyrics of " +  song.getAuthor() + " - " + song.getTitle()));
-
-            gridPane.add(songButton, 0, 0);
-            gridPane.setPadding(new Insets(0,100,250,100));
-            songButton.setOnAction(event1 -> {
-                    try {
-                        resultWindow(song);
-                    } catch (IOException | ParserConfigurationException | SAXException e) {
-                        throw new RuntimeException(e);
-                    }
-            });
-
-            boolean bool = song.isFavorite();
-
-            Button addFav = new Button("\u2661");
-            Tooltip tooltip = new Tooltip("Click to Add " +  song.getAuthor() + " - " + song.getTitle() + " To Your Favorites");
-            tooltip.setStyle("-fx-font-size: 12;");
-            addFav.setTooltip(tooltip);
-            if(favorites.getSongs().contains(song)){
-                addFav.setStyle("-fx-text-fill: red;-fx-font-size: 30px;");
-            } else {
-                addFav.setStyle("-fx-text-fill: black;-fx-font-size: 30px;");
-            }
-            addFav.setPrefSize(70, 70);
-            gridPane.add(addFav, 1, 0);
-
-            CornerRadii songButtonCornerRadii = new CornerRadii(50, 0, 0, 50, false);
-            BackgroundFill songButtonBackgroundFill = new BackgroundFill(new Color(0.1765, 0.7176, 0.2039, 1.0), songButtonCornerRadii, null);
-            Background songButtonBackground = new Background(songButtonBackgroundFill);
-
-            CornerRadii addFavCornerRadii = new CornerRadii(0, 50, 50, 0, false);
-            BackgroundFill addFavBackgroundFill = new BackgroundFill(new Color(0.1765, 0.7176, 0.2039, 1.0), addFavCornerRadii, null);
-            Background addFavBackground = new Background(addFavBackgroundFill);
-
-            songButton.setBackground(songButtonBackground);
-            addFav.setBackground(addFavBackground);
-
-            songButton.setTextFill(Color.WHITE);
-            addFav.setTextFill(Color.WHITE);
-
-            addFav.setOnAction(event1 -> {
-                    if(!bool) {
-                        addFav.setStyle("-fx-text-fill: red; -fx-font-size: 30px;");
-                        song.setFavorite(true);
-                        try {
-                            favorites.addMusic(song);
-                            SaveFavoritesXML.createDocument(favorites);
-                        } catch (AddMusicException | ParserConfigurationException | TransformerException e) {
-                            throw new RuntimeException(e);
-                        }
-                    }
-                    if(bool){
-                        addFav.setStyle("-fx-text-fill: black; -fx-font-size: 30px;");
-                        song.setFavorite(false);
-                        if(favorites.getSongs().contains(song)){
-                            favorites.getSongs().remove(song);
-                        }
-                    }
-            });
-
-            songButton.setOnMouseEntered(event1 -> {
-                songButton.setScaleX(1.1);
-                songButton.setScaleY(1.1);
-                addFav.setScaleX(1.1);
-                addFav.setScaleY(1.1);
-            });
-            songButton.setOnMouseExited(event1 -> {
-                songButton.setScaleX(1.0);
-                songButton.setScaleY(1.0);
-                addFav.setScaleX(1.0);
-                addFav.setScaleY(1.0);
-            });
-
-            addFav.setOnMouseEntered(event1 -> {
-                addFav.setScaleX(1.1);
-                addFav.setScaleY(1.1);
-                songButton.setScaleX(1.1);
-                songButton.setScaleY(1.1);
-            });
-
-            addFav.setOnMouseExited(event1 -> {
-                addFav.setScaleX(1.0);
-                addFav.setScaleY(1.0);
-                songButton.setScaleX(1.0);
-                songButton.setScaleY(1.0);
-            });
-        });
-
-        searchLyricTextButton.setOnAction(event -> {
-            gridPane.getChildren().clear();
-
-            int numberOfResult = valueFactory.getValue();
-            String lyrics = inputLyrics.getText();
-            Search search = new Search();
-
+            String toVerify = null;
             try {
-                search.searchLyricText(lyrics, numberOfResult);
-            } catch (IOException | SAXException | ParserConfigurationException e) {
+                toVerify = search.lyricToVerify(artiste, titre);
+            } catch (ParserConfigurationException | IOException | SAXException e) {
                 throw new RuntimeException(e);
             }
-
-            for (int i = 1; i <= numberOfResult; i++) {
-                Song song = search.getToPrint().get(i - 1);
+            if(toVerify.equals("http://www.chartlyrics.com")){
+                imageToDisplayWhenError(gridPane);
+            }else {
                 Button songButton = new Button();
-                songButton.setText(song.getAuthor() + " - " +  song.getTitle());
-                songButton.setPadding(new Insets(0.0, 20, 0.0, 20));
+                songButton.setText(song.getAuthor() + " - " + song.getTitle());
+                songButton.setPadding(new Insets(0, 20, 0, 20));
                 songButton.setPrefWidth(700);
                 songButton.setPrefHeight(70);
-                songButton.setTooltip(new Tooltip("Click to Display Lyrics of " +  song.getAuthor() + " - " + song.getTitle()));
+                songButton.setTooltip(new Tooltip("Click to Display Lyrics of " + song.getAuthor() + " - " + song.getTitle()));
 
-                gridPane.add(songButton, 0, i);
-                gridPane.setPadding(new Insets(20,100,250,100));
+                gridPane.add(songButton, 0, 0);
+                gridPane.setPadding(new Insets(0, 100, 250, 100));
                 songButton.setOnAction(event1 -> {
                     try {
                         resultWindow(song);
@@ -195,19 +97,19 @@ public class LyricsAppController implements Initializable {
                     }
                 });
 
+                boolean bool = song.isFavorite();
+
                 Button addFav = new Button("\u2661");
-                Tooltip tooltip = new Tooltip("Click to Add " +  song.getAuthor() + " - " + song.getTitle() + " To Your Favorites");
+                Tooltip tooltip = new Tooltip("Click to Add " + song.getAuthor() + " - " + song.getTitle() + " To Your Favorites");
                 tooltip.setStyle("-fx-font-size: 12;");
                 addFav.setTooltip(tooltip);
-
-                if(favorites.getSongs().contains(song)){
+                if (favorites.getSongs().contains(song)) {
                     addFav.setStyle("-fx-text-fill: red;-fx-font-size: 30px;");
                 } else {
                     addFav.setStyle("-fx-text-fill: black;-fx-font-size: 30px;");
                 }
                 addFav.setPrefSize(70, 70);
-                gridPane.add(addFav, 1, i);
-                gridPane.setVgap(15);
+                gridPane.add(addFav, 1, 0);
 
                 CornerRadii songButtonCornerRadii = new CornerRadii(50, 0, 0, 50, false);
                 BackgroundFill songButtonBackgroundFill = new BackgroundFill(new Color(0.1765, 0.7176, 0.2039, 1.0), songButtonCornerRadii, null);
@@ -223,25 +125,21 @@ public class LyricsAppController implements Initializable {
                 songButton.setTextFill(Color.WHITE);
                 addFav.setTextFill(Color.WHITE);
 
-                boolean bool = song.isFavorite();
-
                 addFav.setOnAction(event1 -> {
-                    if(!bool) {
+                    if (!bool) {
                         addFav.setStyle("-fx-text-fill: red; -fx-font-size: 30px;");
                         song.setFavorite(true);
-                        if (!favorites.getSongs().contains(song)) {
-                            try {
-                                favorites.addMusic(song);
-                                SaveFavoritesXML.createDocument(favorites);
-                            } catch (AddMusicException | ParserConfigurationException | TransformerException e) {
-                                throw new RuntimeException(e);
-                            }
+                        try {
+                            favorites.addMusic(song);
+                            SaveFavoritesXML.createDocument(favorites);
+                        } catch (AddMusicException | ParserConfigurationException | TransformerException e) {
+                            throw new RuntimeException(e);
                         }
                     }
-                    if(bool){
+                    if (bool) {
                         addFav.setStyle("-fx-text-fill: black; -fx-font-size: 30px;");
                         song.setFavorite(false);
-                        if(favorites.getSongs().contains(song)){
+                        if (favorites.getSongs().contains(song)) {
                             favorites.getSongs().remove(song);
                         }
                     }
@@ -273,6 +171,123 @@ public class LyricsAppController implements Initializable {
                     songButton.setScaleX(1.0);
                     songButton.setScaleY(1.0);
                 });
+            }
+        });
+
+        searchLyricTextButton.setOnAction(event -> {
+            gridPane.getChildren().clear();
+
+            int numberOfResult = valueFactory.getValue();
+            String lyrics = inputLyrics.getText();
+            Search search = new Search();
+
+            try {
+                search.searchLyricText(lyrics, numberOfResult);
+            } catch (IOException | SAXException | ParserConfigurationException e) {
+                throw new RuntimeException(e);
+            }
+
+            for (int i = 1; i <= numberOfResult; i++) {
+                Song song = search.getToPrint().get(i - 1);
+                if (song.getTitle() == null && song.getAuthor() == null) {
+                    imageToDisplayWhenError(gridPane);
+                } else {
+                    Button songButton = new Button();
+                    songButton.setText(song.getAuthor() + " - " + song.getTitle());
+                    songButton.setPadding(new Insets(0.0, 20, 0.0, 20));
+                    songButton.setPrefWidth(700);
+                    songButton.setPrefHeight(70);
+                    songButton.setTooltip(new Tooltip("Click to Display Lyrics of " + song.getAuthor() + " - " + song.getTitle()));
+
+                    gridPane.add(songButton, 0, i);
+                    gridPane.setPadding(new Insets(20, 100, 250, 100));
+                    songButton.setOnAction(event1 -> {
+                        try {
+                            resultWindow(song);
+                        } catch (IOException | ParserConfigurationException | SAXException e) {
+                            throw new RuntimeException(e);
+                        }
+                    });
+
+                    Button addFav = new Button("\u2661");
+                    Tooltip tooltip = new Tooltip("Click to Add " + song.getAuthor() + " - " + song.getTitle() + " To Your Favorites");
+                    tooltip.setStyle("-fx-font-size: 12;");
+                    addFav.setTooltip(tooltip);
+
+                    if (favorites.getSongs().contains(song)) {
+                        addFav.setStyle("-fx-text-fill: red;-fx-font-size: 30px;");
+                    } else {
+                        addFav.setStyle("-fx-text-fill: black;-fx-font-size: 30px;");
+                    }
+                    addFav.setPrefSize(70, 70);
+                    gridPane.add(addFav, 1, i);
+                    gridPane.setVgap(15);
+
+                    CornerRadii songButtonCornerRadii = new CornerRadii(50, 0, 0, 50, false);
+                    BackgroundFill songButtonBackgroundFill = new BackgroundFill(new Color(0.1765, 0.7176, 0.2039, 1.0), songButtonCornerRadii, null);
+                    Background songButtonBackground = new Background(songButtonBackgroundFill);
+
+                    CornerRadii addFavCornerRadii = new CornerRadii(0, 50, 50, 0, false);
+                    BackgroundFill addFavBackgroundFill = new BackgroundFill(new Color(0.1765, 0.7176, 0.2039, 1.0), addFavCornerRadii, null);
+                    Background addFavBackground = new Background(addFavBackgroundFill);
+
+                    songButton.setBackground(songButtonBackground);
+                    addFav.setBackground(addFavBackground);
+
+                    songButton.setTextFill(Color.WHITE);
+                    addFav.setTextFill(Color.WHITE);
+
+                    boolean bool = song.isFavorite();
+
+                    addFav.setOnAction(event1 -> {
+                        if (!bool) {
+                            addFav.setStyle("-fx-text-fill: red; -fx-font-size: 30px;");
+                            song.setFavorite(true);
+                            if (!favorites.getSongs().contains(song)) {
+                                try {
+                                    favorites.addMusic(song);
+                                    SaveFavoritesXML.createDocument(favorites);
+                                } catch (AddMusicException | ParserConfigurationException | TransformerException e) {
+                                    throw new RuntimeException(e);
+                                }
+                            }
+                        }
+                        if (bool) {
+                            addFav.setStyle("-fx-text-fill: black; -fx-font-size: 30px;");
+                            song.setFavorite(false);
+                            if (favorites.getSongs().contains(song)) {
+                                favorites.getSongs().remove(song);
+                            }
+                        }
+                    });
+
+                    songButton.setOnMouseEntered(event1 -> {
+                        songButton.setScaleX(1.1);
+                        songButton.setScaleY(1.1);
+                        addFav.setScaleX(1.1);
+                        addFav.setScaleY(1.1);
+                    });
+                    songButton.setOnMouseExited(event1 -> {
+                        songButton.setScaleX(1.0);
+                        songButton.setScaleY(1.0);
+                        addFav.setScaleX(1.0);
+                        addFav.setScaleY(1.0);
+                    });
+
+                    addFav.setOnMouseEntered(event1 -> {
+                        addFav.setScaleX(1.1);
+                        addFav.setScaleY(1.1);
+                        songButton.setScaleX(1.1);
+                        songButton.setScaleY(1.1);
+                    });
+
+                    addFav.setOnMouseExited(event1 -> {
+                        addFav.setScaleX(1.0);
+                        addFav.setScaleY(1.0);
+                        songButton.setScaleX(1.0);
+                        songButton.setScaleY(1.0);
+                    });
+                }
             }
         });
 
@@ -393,8 +408,8 @@ public class LyricsAppController implements Initializable {
 
         }
         ImageView imageView = new ImageView(image);
-        imageView.setFitHeight(250);
-        imageView.setFitWidth(250);
+        imageView.setFitHeight(190);
+        imageView.setFitWidth(190);
         root.setLeft(imageView);
 
 
@@ -414,43 +429,24 @@ public class LyricsAppController implements Initializable {
         stage.show();
     }
 
-    public void biggerButton(Button b, Button t, Button n, Button o){
-        b.setOnMouseEntered(event1 -> {
-            b.setScaleX(1.1);
-            b.setScaleY(1.1);
+    public void biggerButton(Button button){
+        button.setOnMouseEntered(event1 -> {
+            button.setScaleX(1.1);
+            button.setScaleY(1.1);
         });
-        b.setOnMouseExited(event1 -> {
-            b.setScaleX(1.0);
-            b.setScaleY(1.0);
+        button.setOnMouseExited(event1 -> {
+            button.setScaleX(1.0);
+            button.setScaleY(1.0);
         });
-
-        t.setOnMouseEntered(event1 -> {
-            t.setScaleX(1.1);
-            t.setScaleY(1.1);
-        });
-
-        t.setOnMouseExited(event1 -> {
-            t.setScaleX(1.0);
-            t.setScaleY(1.0);
-        });
-
-        n.setOnMouseEntered(event1 -> {
-            n.setScaleX(1.1);
-            n.setScaleY(1.1);
-        });
-        n.setOnMouseExited(event1 -> {
-            n.setScaleX(1.0);
-            n.setScaleY(1.0);
-        });
-
-        o.setOnMouseEntered(event1 -> {
-            o.setScaleX(1.1);
-            o.setScaleY(1.1);
-        });
-
-        o.setOnMouseExited(event1 -> {
-            o.setScaleX(1.0);
-            o.setScaleY(1.0);
-        });
+    }
+    public void imageToDisplayWhenError(GridPane gridPane){
+        Image image = new Image(new File("src/main/resources/noMusic.jpg").toURI().toString());
+        ImageView imageView = new ImageView(image);
+        imageView.setFitWidth(220);
+        imageView.setFitHeight(220);
+        GridPane.setConstraints(imageView, 0, 0);
+        GridPane.setHalignment(imageView, HPos.CENTER);
+        GridPane.setValignment(imageView, VPos.CENTER);
+        gridPane.getChildren().add(imageView);
     }
 }
