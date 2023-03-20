@@ -37,6 +37,15 @@ public class LyricsAppController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resourceBundle) {
 
+        File file = new File("src/main/resources/fichiers xml/favorites.xml");
+        if (file.exists()) {
+            try {
+                favorites.addAllMusics(new ReadXml().readXml("src/main/resources/fichiers xml/favorites.xml"));
+            } catch (ParserConfigurationException | IOException | SAXException | AddMusicException e) {
+                throw new RuntimeException(e);
+            }
+        }
+
         SpinnerValueFactory<Integer> valueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 25, 1);
         numberOfResults.setValueFactory(valueFactory);
 
@@ -344,6 +353,11 @@ public class LyricsAppController implements Initializable {
                     addFav.setStyle("-fx-text-fill: black; -fx-font-size: 30px;");
                     song.setFavorite(false);
                     favorites.deleteMusic(finalI);
+                    try {
+                        SaveFavoritesXML.createDocument(favorites);
+                    } catch (ParserConfigurationException | TransformerException e) {
+                        throw new RuntimeException(e);
+                    }
                     gridPane.getChildren().remove(addFav);
                     gridPane.getChildren().remove(songButton);
                 });
